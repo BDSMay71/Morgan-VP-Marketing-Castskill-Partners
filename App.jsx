@@ -715,6 +715,37 @@ export default function App() {
   ];
   const SUBTABS = [{ k:"agent", l:" Agent" }, { k:"chat", l:" Chat" }, { k:"quick", l:" Quick Actions" }, ...(mode==="research"?[{ k:"followup", l:" Follow-Ups" }]:[]) ];
   const LI_TABS = [{ k:"li_gen", l:" Generate Post" }, { k:"li_sched", l:" Schedule" }, { k:`li_drafts`, l:` Drafts (${drafts.length})` }];
+  // ── Monday Morning Briefing ───────────────────────────────────────
+  const fetchMondayBriefing = async () => {
+    setCrmLoading(true);
+    setCrmError('');
+    try {
+      const res = await fetch('/api/crm', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'monday_briefing', date: new Date().toISOString() }),
+      });
+      const data = await res.json();
+      if (!data.success && data.error) {
+        setCrmError(data.error + (data.message ? ' ' + data.message : ''));
+      } else {
+        setCrmData(data);
+        setCrmLastFetched(new Date().toLocaleTimeString());
+      }
+    } catch(e) {
+      setCrmError('Could not connect to CRM endpoint: ' + e.message);
+    }
+    setCrmLoading(false);
+  };
+
+  // Auto-load on Monday mornings
+  useEffect(() => {
+    const today = new Date();
+    if (today.getDay() === 1 && activeTab === 'market' && !crmData) {
+      // Auto-trigger on Mondays when app loads
+      fetchMondayBriefing();
+    }
+  }, []);
 
   return (
     <div style={{ fontFamily:"'Inter',-apple-system,sans-serif", background:C.white, minHeight:"100vh", color:C.black, display:"flex", flexDirection:"column" }}> <style>{`
