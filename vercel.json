@@ -5,6 +5,10 @@
   "functions": {
     "api/*.js": {
       "maxDuration": 60
+    },
+    "api/*.py": {
+      "maxDuration": 60,
+      "runtime": "python3.12"
     }
   },
   "rewrites": [
