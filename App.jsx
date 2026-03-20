@@ -376,7 +376,7 @@ INSTITUTIONAL DESIGN STANDARDS  NON-NEGOTIABLE:
 5. SOURCES REQUIRED: Every market statistic must cite a real, verifiable source. No invented data.
 6. NO CLUTTER: Never put more content on a slide than can be read in 8 seconds. Whitespace is a feature.
 7. HEADLINES DRIVE: Slide headlines should be complete statements, not topics. Not "Market Size" but "LMM Industrial Market is Highly Fragmented."
-8. INSTITUTIONAL TONE: Every word earns its place. Cut adjectives. Lead with data. No clich©s.
+8. INSTITUTIONAL TONE: Every word earns its place. Cut adjectives. Lead with data. No clichs.
 
 REQUIRED SLIDE FORMAT:
 ---SLIDE [N]: [SLIDE TITLE]---
@@ -436,44 +436,44 @@ const LI_SCHEDULE = [
 //  QUICK ACTIONS 
 const QA = {
   research: [
-    { icon:"°", label:"Weekly Market Research Report", prompt:"Generate a weekly market research report for Catskill Partners. Today's date is " + new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'}) + ". CRITICAL: Every data point, transaction, news item, and market development cited MUST be from the last 30 days only. Do not reference any deals, stats, or events older than 30 days. If citing trends, label them explicitly as historical context. Cover: (1) LMM industrial M&A activity from the last 30 days only, (2) ICT/data center supply chain news from the last 30 days, (3) advanced manufacturing sector developments from the last 30 days, (4) notable founder/family-owned business transactions from the last 30 days, (5) current macro factors. Structured executive brief format. No m-dashes. Flag the date range covered at the top of the report." },
-    { icon:"°", label:"Advanced Mfg Sector Deep Dive", prompt:"Produce a competitive landscape analysis for the advanced manufacturing and precision components sector. Cover: market size, CAGR, top players, fragmentation dynamics, M&A multiples, and why this segment is attractive for Catskill's thesis. Include ICT/data center end-market demand drivers. No m-dashes." },
+    { icon:"", label:"Weekly Market Research Report", prompt:"Generate a weekly market research report for Catskill Partners. Today's date is " + new Date().toLocaleDateString('en-US', {month:'long', day:'numeric', year:'numeric'}) + ". CRITICAL: Every data point, transaction, news item, and market development cited MUST be from the last 30 days only. Do not reference any deals, stats, or events older than 30 days. If citing trends, label them explicitly as historical context. Cover: (1) LMM industrial M&A activity from the last 30 days only, (2) ICT/data center supply chain news from the last 30 days, (3) advanced manufacturing sector developments from the last 30 days, (4) notable founder/family-owned business transactions from the last 30 days, (5) current macro factors. Structured executive brief format. No m-dashes. Flag the date range covered at the top of the report." },
+    { icon:"", label:"Advanced Mfg Sector Deep Dive", prompt:"Produce a competitive landscape analysis for the advanced manufacturing and precision components sector. Cover: market size, CAGR, top players, fragmentation dynamics, M&A multiples, and why this segment is attractive for Catskill's thesis. Include ICT/data center end-market demand drivers. No m-dashes." },
     { icon:"", label:"Power Distribution Segment Report", prompt:"Research report on the US power distribution equipment market: switchgear, transfer switches, PDUs, eHouse substations. Market size, key players, supply/demand dynamics, hyperscaler procurement trends, and acquisition opportunity assessment for a consolidation platform. No m-dashes." },
-    { icon:"°", label:"Succession Wave Analysis", prompt:"Analyze the founder/family-owned manufacturing succession wave in the US LMM market. Data on owner age demographics, exit readiness, deal structures preferred by sellers, and why operator-led buyers have a structural advantage over financial engineers. No m-dashes." },
-    { icon:"°", label:"ICT End-Market Demand Brief", prompt:"Brief on ICT infrastructure demand drivers for advanced manufacturing: hyperscaler capex commitments, AI infrastructure buildout, data center mechanical component spend, telecom infrastructure. Frame through the lens of Catskill's repositioning thesis for acquired manufacturers. No m-dashes." },
-    { icon:"°", label:"Competitive Intel: PE Landscape", prompt:"Competitive analysis of PE firms active in LMM industrial manufacturing M&A. Generalists vs. operator-led specialists. Where is Catskill Partners differentiated? Typical entry multiples, hold periods, and value creation approaches by competitor type. No m-dashes." },
+    { icon:"", label:"Succession Wave Analysis", prompt:"Analyze the founder/family-owned manufacturing succession wave in the US LMM market. Data on owner age demographics, exit readiness, deal structures preferred by sellers, and why operator-led buyers have a structural advantage over financial engineers. No m-dashes." },
+    { icon:"", label:"ICT End-Market Demand Brief", prompt:"Brief on ICT infrastructure demand drivers for advanced manufacturing: hyperscaler capex commitments, AI infrastructure buildout, data center mechanical component spend, telecom infrastructure. Frame through the lens of Catskill's repositioning thesis for acquired manufacturers. No m-dashes." },
+    { icon:"", label:"Competitive Intel: PE Landscape", prompt:"Competitive analysis of PE firms active in LMM industrial manufacturing M&A. Generalists vs. operator-led specialists. Where is Catskill Partners differentiated? Typical entry multiples, hold periods, and value creation approaches by competitor type. No m-dashes." },
   ],
   followup: [
-    { icon:"°", label:"IB Follow-Up List", prompt:"Review the Catskill Partners CRM data and identify every Investment Banker and Broker contact that is overdue for follow-up (last contact >30 days, relationship not Cold). For each contact, provide: (1) firm and contact name, (2) days since last contact, (3) relationship strength, (4) specific recommended outreach message referencing their last interaction or deal discussed, (5) priority level. Format as an actionable call list. No m-dashes." },
-    { icon:"°", label:"LP Follow-Up List", prompt:"Review the Catskill Partners CRM data and identify every LP and Capital Provider overdue for follow-up. Prioritize: Strong relationships first, then Developing. Include endowments, family offices, and hybrid providers. For each, provide: contact details, last interaction, check size range, recommended next step, and a specific follow-up message. No m-dashes." },
-    { icon:"°°©°", label:"Family Office Outreach", prompt:"From the Catskill Partners CRM, identify all Single Family Office and Multi Family Office contacts. For each: assess relationship status, last contact, check size capacity, and recommended outreach approach. Draft a specific, personalized follow-up message for each active family office contact. Frame around Fund I momentum, active pipeline (Project Anchor IOI submitted), and why now is the right moment to commit. No m-dashes." },
-    { icon:"°", label:"Pipeline Status Review", prompt:"Review the Catskill Partners active deal pipeline. For each deal: current stage, days since last action, overdue status, and recommended next step. Identify which deals need immediate attention. Flag any deals past their due dates. Summarize pipeline health and velocity. No m-dashes." },
-    { icon:"°", label:"Full CRM Follow-Up Brief", prompt:"Generate a comprehensive Catskill Partners weekly follow-up brief covering all three tracks: (1) Investment Bankers and Brokers overdue for contact, (2) LPs and Capital Providers needing follow-up, (3) Active deals with overdue next actions. For each contact, provide specific recommended outreach with relevant context, deal references, and suggested talking points. Prioritize by urgency and relationship strength. No m-dashes." },
+    { icon:"", label:"IB Follow-Up List", prompt:"Review the Catskill Partners CRM data and identify every Investment Banker and Broker contact that is overdue for follow-up (last contact >30 days, relationship not Cold). For each contact, provide: (1) firm and contact name, (2) days since last contact, (3) relationship strength, (4) specific recommended outreach message referencing their last interaction or deal discussed, (5) priority level. Format as an actionable call list. No m-dashes." },
+    { icon:"", label:"LP Follow-Up List", prompt:"Review the Catskill Partners CRM data and identify every LP and Capital Provider overdue for follow-up. Prioritize: Strong relationships first, then Developing. Include endowments, family offices, and hybrid providers. For each, provide: contact details, last interaction, check size range, recommended next step, and a specific follow-up message. No m-dashes." },
+    { icon:"", label:"Family Office Outreach", prompt:"From the Catskill Partners CRM, identify all Single Family Office and Multi Family Office contacts. For each: assess relationship status, last contact, check size capacity, and recommended outreach approach. Draft a specific, personalized follow-up message for each active family office contact. Frame around Fund I momentum, active pipeline (Project Anchor IOI submitted), and why now is the right moment to commit. No m-dashes." },
+    { icon:"", label:"Pipeline Status Review", prompt:"Review the Catskill Partners active deal pipeline. For each deal: current stage, days since last action, overdue status, and recommended next step. Identify which deals need immediate attention. Flag any deals past their due dates. Summarize pipeline health and velocity. No m-dashes." },
+    { icon:"", label:"Full CRM Follow-Up Brief", prompt:"Generate a comprehensive Catskill Partners weekly follow-up brief covering all three tracks: (1) Investment Bankers and Brokers overdue for contact, (2) LPs and Capital Providers needing follow-up, (3) Active deals with overdue next actions. For each contact, provide specific recommended outreach with relevant context, deal references, and suggested talking points. Prioritize by urgency and relationship strength. No m-dashes." },
     { icon:"", label:"Draft Outreach Emails", prompt:"Using the Catskill Partners CRM data, draft personalized follow-up emails for the top 5 most overdue contacts across IBs, LPs, and family offices. Each email should: reference the last interaction, include a relevant market update or deal hook, advance the Catskill relationship, and include a specific call to action. Operator credibility voice. No m-dashes." },
   ],
   content: [
     { icon:"", label:"Operator-First Thought Leadership", prompt:"Write a 600-800 word thought leadership article from Brian Steel's perspective on why operator-led PE creates superior outcomes in manufacturing acquisitions vs. financial engineering. Ground it in specific operational experience: running factories, vendor management, customer accountability. For the Catskill Partners website. No m-dashes. Proofread for grammar." },
-    { icon:"°", label:"ICT Supply Chain Article", prompt:"Write a 500-700 word article on how the AI infrastructure buildout is creating a demand supercycle for advanced manufacturers who can reposition into ICT supply chains. Include data on hyperscaler capex, demand for precision components, and why most LMM manufacturers are unaware of this opportunity. Catskill Partners byline. No m-dashes." },
-    { icon:"°", label:"Firm Overview  About Us", prompt:"Draft a compelling 'About Catskill Partners' page for the firm's website. Cover: who we are (operators first), what we do (acquire and reposition advanced manufacturers), why we are different (track record, ICT thesis, hands-on partnership), and who we partner with (founder-owned businesses ready for next phase). 400-500 words. No m-dashes." },
-    { icon:"°£", label:"Press Release  New Acquisition", prompt:"Draft a press release template for announcing a Catskill Partners platform acquisition. Include: firm intro paragraph, deal rationale, quote from Brian Steel as operator-partner, target company description placeholder, strategic context (ICT thesis), and boilerplate. Professional newswire format. No m-dashes." },
-    { icon:"°", label:"Monthly Newsletter", prompt:"Draft the Catskill Partners monthly firm update newsletter. Sections: Market Pulse (2-3 key sector developments), Firm Activity (pipeline activity, meetings, conferences), Team Insight (Brian or Mike perspective piece), and Looking Ahead. Tone: institutional but personal. 400-600 words. No m-dashes." },
-    { icon:"°", label:"Case Study  Tenere Track Record", prompt:"Write a case study on the Tenere investment and exit: Catskill's anchor track record. Situation (op loss of $8M), approach (operator-led turnaround), actions (revenue growth, cost discipline, team), results (50% organic revenue growth, ~11x MOIC, ~30% IRR, Watermill's best in 30+ years). 300-400 words for website/deck use. No m-dashes." },
+    { icon:"", label:"ICT Supply Chain Article", prompt:"Write a 500-700 word article on how the AI infrastructure buildout is creating a demand supercycle for advanced manufacturers who can reposition into ICT supply chains. Include data on hyperscaler capex, demand for precision components, and why most LMM manufacturers are unaware of this opportunity. Catskill Partners byline. No m-dashes." },
+    { icon:"", label:"Firm Overview  About Us", prompt:"Draft a compelling 'About Catskill Partners' page for the firm's website. Cover: who we are (operators first), what we do (acquire and reposition advanced manufacturers), why we are different (track record, ICT thesis, hands-on partnership), and who we partner with (founder-owned businesses ready for next phase). 400-500 words. No m-dashes." },
+    { icon:"", label:"Press Release  New Acquisition", prompt:"Draft a press release template for announcing a Catskill Partners platform acquisition. Include: firm intro paragraph, deal rationale, quote from Brian Steel as operator-partner, target company description placeholder, strategic context (ICT thesis), and boilerplate. Professional newswire format. No m-dashes." },
+    { icon:"", label:"Monthly Newsletter", prompt:"Draft the Catskill Partners monthly firm update newsletter. Sections: Market Pulse (2-3 key sector developments), Firm Activity (pipeline activity, meetings, conferences), Team Insight (Brian or Mike perspective piece), and Looking Ahead. Tone: institutional but personal. 400-600 words. No m-dashes." },
+    { icon:"", label:"Case Study  Tenere Track Record", prompt:"Write a case study on the Tenere investment and exit: Catskill's anchor track record. Situation (op loss of $8M), approach (operator-led turnaround), actions (revenue growth, cost discipline, team), results (50% organic revenue growth, ~11x MOIC, ~30% IRR, Watermill's best in 30+ years). 300-400 words for website/deck use. No m-dashes." },
   ],
   linkedin: [
-    { icon:"°", label:"Operator-First Post", prompt:"Write a LinkedIn post for Catskill Partners on why operator-led PE is fundamentally different from financial engineering in manufacturing acquisitions. Lead with a hook that every manufacturing owner has heard the standard PE pitch. 150-280 words. Brian Steel's voice: specific, direct, no buzzwords. No m-dashes. Proofread grammar." },
-    { icon:"°", label:"Founder Succession Hook", prompt:"Write a LinkedIn post on the manufacturing succession wave: 60%+ of LMM industrial owners are 55+. What does that mean for sellers? What should they actually look for in a partner? Strong hook, operator perspective, ends with a clear POV. 150-280 words. No m-dashes." },
+    { icon:"", label:"Operator-First Post", prompt:"Write a LinkedIn post for Catskill Partners on why operator-led PE is fundamentally different from financial engineering in manufacturing acquisitions. Lead with a hook that every manufacturing owner has heard the standard PE pitch. 150-280 words. Brian Steel's voice: specific, direct, no buzzwords. No m-dashes. Proofread grammar." },
+    { icon:"", label:"Founder Succession Hook", prompt:"Write a LinkedIn post on the manufacturing succession wave: 60%+ of LMM industrial owners are 55+. What does that mean for sellers? What should they actually look for in a partner? Strong hook, operator perspective, ends with a clear POV. 150-280 words. No m-dashes." },
     { icon:"", label:"$250B Demand Opportunity", prompt:"Write a LinkedIn post on the AI infrastructure buildout creating a demand supercycle for advanced manufacturers. Lead with a stat that will stop the scroll. Frame for both owners (opportunity they may not see) and LPs (why this is the right moment). 150-280 words. No m-dashes." },
-    { icon:"°", label:"Track Record Post", prompt:"Write a LinkedIn post anchored on Brian Steel's operator track record: Tenere (11x MOIC, ~30% IRR) and Cadrex (11 acquisitions, 23 facilities, 300bps EBITDA expansion). Not a brag post: frame it as proof that operational experience creates returns. 150-280 words. No m-dashes." },
-    { icon:"°", label:"Partnership Philosophy Post", prompt:"Write a LinkedIn post on what Catskill Partners actually means by 'partnership' with a founder selling their business. We have taken the midnight call, traveled to vendors, carried the sales bag. The next chapter deserves someone who has done the work. 150-280 words. No m-dashes." },
-    { icon:"°", label:"Supply Gap Post", prompt:"Write a LinkedIn post on the supply gap in target manufacturing segments: top 5 players hold less than 10% combined market share. No dominant national platforms. Frame this as the exact right moment for an operator-led consolidator. 150-280 words. No m-dashes." },
+    { icon:"", label:"Track Record Post", prompt:"Write a LinkedIn post anchored on Brian Steel's operator track record: Tenere (11x MOIC, ~30% IRR) and Cadrex (11 acquisitions, 23 facilities, 300bps EBITDA expansion). Not a brag post: frame it as proof that operational experience creates returns. 150-280 words. No m-dashes." },
+    { icon:"", label:"Partnership Philosophy Post", prompt:"Write a LinkedIn post on what Catskill Partners actually means by 'partnership' with a founder selling their business. We have taken the midnight call, traveled to vendors, carried the sales bag. The next chapter deserves someone who has done the work. 150-280 words. No m-dashes." },
+    { icon:"", label:"Supply Gap Post", prompt:"Write a LinkedIn post on the supply gap in target manufacturing segments: top 5 players hold less than 10% combined market share. No dominant national platforms. Frame this as the exact right moment for an operator-led consolidator. 150-280 words. No m-dashes." },
   ],
   presentations: [
-    { icon:"°", label:"Fund I Investor Overview Deck", prompt:"Generate complete slide content for a Catskill Partners Fund I investor overview presentation using the March 2026 Investor Overview as the primary reference. Slides: (1) Cover, (2) Three Converging Forces, (3) Our Thesis, (4) Target Profile, (5) Value Creation Approach, (6) Team & Track Record, (7) Fund Terms, (8) Why Now. For each slide: headline, 4-5 bullets, featured data point. No m-dashes. Institutional quality." },
-    { icon:"°", label:"Firm One-Pager", prompt:"Generate content for a Catskill Partners one-page firm overview. Sections: Who We Are, What We Do (investment criteria), How We Create Value (operator approach, ICT thesis), Track Record (Tenere + Cadrex highlights), Fund Terms. Single-page leave-behind format. No m-dashes. Proofread for grammar." },
-    { icon:"°", label:"Market Opportunity Slide Set", prompt:"Generate slide content for a 4-slide market opportunity section based on the March 2026 Investor Overview deck. Slide 1: Succession Wave (60%+ owners 55+). Slide 2: Demand Supercycle ($250B+ ICT spend). Slide 3: Supply Gap (<10% combined share). Slide 4: Why Catskill / Why Now. Each: headline + 4 bullets + featured stat. No m-dashes." },
-    { icon:"°", label:"Track Record Slide", prompt:"Generate a track record slide for Catskill Partners investor presentations. Tenere: situation, actions, results (11x MOIC, ~30% IRR, $8M op loss to $7M profit, 50% revenue growth). Cadrex: 11 acquisitions, 23 facilities, $500M+ platform, 300bps EBITDA expansion in 18 months. Single slide with headline, two deal summaries, callout stats. No m-dashes." },
-    { icon:"°", label:"Conference Talking Points", prompt:"Generate talking points for Brian Steel presenting Catskill Partners at an industrial PE conference. Firm intro (30 sec), thesis (60 sec), differentiation from generalists (60 sec), what we look for in targets (30 sec), call to action for bankers/sellers in the room (30 sec). Conversational, operator-credibility voice. No m-dashes." },
-    { icon:"°", label:"LP Quarterly Update", prompt:"Generate content for a Catskill Partners LP quarterly update presentation. Sections: Quarter Highlights, Market Commentary (3 key thesis-relevant developments), Pipeline Activity (high-level), Team Updates, Outlook. 5-6 slides, each with headline and 3-4 bullets. Institutional tone. No m-dashes. Proofread grammar." },
+    { icon:"", label:"Fund I Investor Overview Deck", prompt:"Generate complete slide content for a Catskill Partners Fund I investor overview presentation using the March 2026 Investor Overview as the primary reference. Slides: (1) Cover, (2) Three Converging Forces, (3) Our Thesis, (4) Target Profile, (5) Value Creation Approach, (6) Team & Track Record, (7) Fund Terms, (8) Why Now. For each slide: headline, 4-5 bullets, featured data point. No m-dashes. Institutional quality." },
+    { icon:"", label:"Firm One-Pager", prompt:"Generate content for a Catskill Partners one-page firm overview. Sections: Who We Are, What We Do (investment criteria), How We Create Value (operator approach, ICT thesis), Track Record (Tenere + Cadrex highlights), Fund Terms. Single-page leave-behind format. No m-dashes. Proofread for grammar." },
+    { icon:"", label:"Market Opportunity Slide Set", prompt:"Generate slide content for a 4-slide market opportunity section based on the March 2026 Investor Overview deck. Slide 1: Succession Wave (60%+ owners 55+). Slide 2: Demand Supercycle ($250B+ ICT spend). Slide 3: Supply Gap (<10% combined share). Slide 4: Why Catskill / Why Now. Each: headline + 4 bullets + featured stat. No m-dashes." },
+    { icon:"", label:"Track Record Slide", prompt:"Generate a track record slide for Catskill Partners investor presentations. Tenere: situation, actions, results (11x MOIC, ~30% IRR, $8M op loss to $7M profit, 50% revenue growth). Cadrex: 11 acquisitions, 23 facilities, $500M+ platform, 300bps EBITDA expansion in 18 months. Single slide with headline, two deal summaries, callout stats. No m-dashes." },
+    { icon:"", label:"Conference Talking Points", prompt:"Generate talking points for Brian Steel presenting Catskill Partners at an industrial PE conference. Firm intro (30 sec), thesis (60 sec), differentiation from generalists (60 sec), what we look for in targets (30 sec), call to action for bankers/sellers in the room (30 sec). Conversational, operator-credibility voice. No m-dashes." },
+    { icon:"", label:"LP Quarterly Update", prompt:"Generate content for a Catskill Partners LP quarterly update presentation. Sections: Quarter Highlights, Market Commentary (3 key thesis-relevant developments), Pipeline Activity (high-level), Team Updates, Outlook. 5-6 slides, each with headline and 3-4 bullets. Institutional tone. No m-dashes. Proofread grammar." },
   ],
 };
 
@@ -526,12 +526,11 @@ const FORMATS = [
   { v:"report",   l:"Structured Report with Sections" },
   { v:"post",     l:"LinkedIn Post (150-280 words)" },
   { v:"script",   l:"Talk Track / Script" },
-  { v:"pptx",     l:"° PowerPoint Presentation (Catskill Template)" },
+  { v:"pptx",     l:" PowerPoint Presentation (Catskill Template)" },
 ];
 
 //  FORMAT TEXT 
-const fmt = (text) =>
-  text?.split("\n").map((l, i) => {
+const fmt = (text) => text?.split("\n").map((l, i) => {
     if (!l) return <div key={i} style={{ height: 7 }} />;
     if (l.startsWith("## ")) return <div key={i} style={{ fontWeight:700, fontSize:15, marginTop:14, color:"#1a5c3a" }}>{l.slice(3)}</div>;
     if (l.startsWith("# "))  return <div key={i} style={{ fontWeight:700, fontSize:17, marginTop:14, color:"#1a1a1a" }}>{l.slice(2)}</div>;
@@ -701,25 +700,24 @@ export default function App() {
   };
 
   const MC = {
-    research:      { label:"Market Research",    color:C.green,    bg:"#eff6ff", icon:"°" },
+    research:      { label:"Market Research",    color:C.green,    bg:"#eff6ff", icon:"" },
     content:       { label:"Content & Articles", color:C.greenForest,    bg:"#f0fafa", icon:"" },
-    linkedin:      { label:"LinkedIn Studio",    color:"#0a66c2", bg:"#eff3ff", icon:"°" },
-    presentations: { label:"Presentations",      color:C.greenBright,    bg:"#fdf8ef", icon:"°" },
+    linkedin:      { label:"LinkedIn Studio",    color:"#0a66c2", bg:"#eff3ff", icon:"" },
+    presentations: { label:"Presentations",      color:C.greenBright,    bg:"#fdf8ef", icon:"" },
   };
   const mc = MC[mode] || MC.research;
 
   const NAV = [
-    { k:"research",      l:"° Market Research" },
+    { k:"research",      l:" Market Research" },
     { k:"content",       l:" Content & Articles" },
-    { k:"linkedin",      l:"° LinkedIn Studio" },
-    { k:"presentations", l:"° Presentations" },
+    { k:"linkedin",      l:" LinkedIn Studio" },
+    { k:"presentations", l:" Presentations" },
   ];
-  const SUBTABS = [{ k:"agent", l:" Agent" }, { k:"chat", l:"° Chat" }, { k:"quick", l:"° Quick Actions" }, ...(mode==="research"?[{ k:"followup", l:"° Follow-Ups" }]:[]) ];
-  const LI_TABS = [{ k:"li_gen", l:" Generate Post" }, { k:"li_sched", l:"° Schedule" }, { k:`li_drafts`, l:`° Drafts (${drafts.length})` }];
+  const SUBTABS = [{ k:"agent", l:" Agent" }, { k:"chat", l:" Chat" }, { k:"quick", l:" Quick Actions" }, ...(mode==="research"?[{ k:"followup", l:" Follow-Ups" }]:[]) ];
+  const LI_TABS = [{ k:"li_gen", l:" Generate Post" }, { k:"li_sched", l:" Schedule" }, { k:`li_drafts`, l:` Drafts (${drafts.length})` }];
 
   return (
-    <div style={{ fontFamily:"'Inter',-apple-system,sans-serif", background:C.white, minHeight:"100vh", color:C.black, display:"flex", flexDirection:"column" }}>
-      <style>{`
+    <div style={{ fontFamily:"'Inter',-apple-system,sans-serif", background:C.white, minHeight:"100vh", color:C.black, display:"flex", flexDirection:"column" }}> <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
         *{box-sizing:border-box;margin:0;padding:0}
         ::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:#ddd;border-radius:2px}
@@ -774,480 +772,148 @@ export default function App() {
         .doctag{background:#f0f7f3;border:1px solid #c8e6cc;border-radius:4px;padding:3px 10px;font-size:10px;font-family:Inter,sans-serif;color:#1a5c3a;display:inline-flex;align-items:center;gap:6px;margin:2px}
         .deldoc{background:none;border:none;cursor:pointer;color:#aaa;font-size:12px;padding:0 2px}
         .deldoc:hover{color:#e53e3e}
-      `}</style>
-
-      {/* HEADER */}
-      <div style={{ borderBottom:`1px solid ${C.border}`, padding:"8px 20px", display:"flex", alignItems:"center", justifyContent:"space-between", background:C.white, position:"sticky", top:0, zIndex:30, boxShadow:"0 1px 6px rgba(0,0,0,.05)" }}>
-        <div style={{ display:"flex", alignItems:"center", gap:14 }}>
-          <img src={LOGO_SRC} alt="Catskill Partners" style={{ height:32, width:"auto", objectFit:"contain" }} />
-          <div style={{ borderLeft:`1px solid ${C.border}`, paddingLeft:14 }}>
-            <div style={{ fontSize:13, fontWeight:700, color:C.black }}>Catskill Partners</div>
-            <div style={{ fontSize:10, color:C.greenBright, letterSpacing:"1.2px", textTransform:"uppercase", marginTop:1, fontWeight:600 }}>Morgan Cole · VP of Marketing</div>
-          </div>
-        </div>
-        <div style={{ display:"flex", alignItems:"center", gap:10 }}>
-          <button className={`tob ${webSearch?"on":""}`} onClick={() => setWebSearch(p => !p)} style={{ border: mode==="presentations" && !webSearch ? "1.5px solid #B8962E" : undefined }}>° Web Search {webSearch?"ON":"OFF"}{mode==="presentations" && !webSearch ? " " : ""}</button>
-          <div className="pulse" />
-        </div>
-      </div>
-
-      {/* TOP NAV */}
-      <div style={{ display:"flex", padding:"0 12px", borderBottom:`1px solid ${C.border}`, background:"#fafafa", overflowX:"auto" }}>
-        {NAV.map(({ k, l }) => (
+      `}</style> {/* HEADER */}
+      <div style={{ borderBottom:`1px solid ${C.border}`, padding:"8px 20px", display:"flex", alignItems:"center", justifyContent:"space-between", background:C.white, position:"sticky", top:0, zIndex:30, boxShadow:"0 1px 6px rgba(0,0,0,.05)" }}> <div style={{ display:"flex", alignItems:"center", gap:14 }}> <img src={LOGO_SRC} alt="Catskill Partners" style={{ height:32, width:"auto", objectFit:"contain" }} /> <div style={{ borderLeft:`1px solid ${C.border}`, paddingLeft:14 }}> <div style={{ fontSize:13, fontWeight:700, color:C.black }}>Catskill Partners</div> <div style={{ fontSize:10, color:C.greenBright, letterSpacing:"1.2px", textTransform:"uppercase", marginTop:1, fontWeight:600 }}>Morgan Cole · VP of Marketing</div> </div> </div> <div style={{ display:"flex", alignItems:"center", gap:10 }}> <button className={`tob ${webSearch?"on":""}`} onClick={() => setWebSearch(p => !p)} style={{ border: mode==="presentations" && !webSearch ? "1.5px solid #B8962E" : undefined }}> Web Search {webSearch?"ON":"OFF"}{mode==="presentations" && !webSearch ? " " : ""}</button> <div className="pulse" /> </div> </div> {/* TOP NAV */}
+      <div style={{ display:"flex", padding:"0 12px", borderBottom:`1px solid ${C.border}`, background:"#fafafa", overflowX:"auto" }}> {NAV.map(({ k, l }) => (
           <button key={k} className={`nb ${mode===k?"a":""}`} style={{ "--c":MC[k].color }}
-            onClick={() => { setMode(k); setTab(k==="linkedin"?"li_gen":"agent"); setAgentOut(null); }}>
-            {l}
-          </button>
-        ))}
-      </div>
-
-      {/* MODE STRIPE */}
-      <div style={{ padding:"4px 20px", background:mc.bg, borderBottom:`1px solid ${mc.color}22`, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-        <div style={{ display:"flex", alignItems:"center", gap:8 }}>
-          <div style={{ width:5, height:5, borderRadius:"50%", background:mc.color }} />
-          <span style={{ fontSize:10, color:mc.color, letterSpacing:"1px", textTransform:"uppercase", fontWeight:700 }}>{mc.label}</span>
-        </div>
-        {mode==="presentations" && (
-          <span style={{ fontSize:10, color:"#1a5c3a", background:"#e8ecf8", border:"1px solid #c7d2fe", borderRadius:4, padding:"2px 8px", fontWeight:600 }}>
-            ° Catskill Template Active · Investor Overview Reference Loaded
-          </span>
-        )}
-      </div>
-
-      {/* SUB TABS */}
-      <div style={{ display:"flex", padding:"0 12px", borderBottom:`1px solid ${C.border}`, background:C.white, overflowX:"auto" }}>
-        {isLI
+            onClick={() => { setMode(k); setTab(k==="linkedin"?"li_gen":"agent"); setAgentOut(null); }}> {l}
+          </button> ))}
+      </div> {/* MODE STRIPE */}
+      <div style={{ padding:"4px 20px", background:mc.bg, borderBottom:`1px solid ${mc.color}22`, display:"flex", alignItems:"center", justifyContent:"space-between" }}> <div style={{ display:"flex", alignItems:"center", gap:8 }}> <div style={{ width:5, height:5, borderRadius:"50%", background:mc.color }} /> <span style={{ fontSize:10, color:mc.color, letterSpacing:"1px", textTransform:"uppercase", fontWeight:700 }}>{mc.label}</span> </div> {mode==="presentations" && (
+          <span style={{ fontSize:10, color:"#1a5c3a", background:"#e8ecf8", border:"1px solid #c7d2fe", borderRadius:4, padding:"2px 8px", fontWeight:600 }}> Catskill Template Active · Investor Overview Reference Loaded
+          </span> )}
+      </div> {/* SUB TABS */}
+      <div style={{ display:"flex", padding:"0 12px", borderBottom:`1px solid ${C.border}`, background:C.white, overflowX:"auto" }}> {isLI
           ? LI_TABS.map(({ k, l }) => (
               <button key={k} className={`sb ${tab===k?"a":""}`}
                 style={{ color:tab===k?"#0a66c2":undefined, borderBottomColor:tab===k?"#0a66c2":undefined }}
-                onClick={() => setTab(k)}>{l}</button>
-            ))
+                onClick={() => setTab(k)}>{l}</button> ))
           : SUBTABS.map(({ k, l }) => (
-              <button key={k} className={`sb ${tab===k?"a":""}`} onClick={() => setTab(k)}>{l}</button>
-            ))
+              <button key={k} className={`sb ${tab===k?"a":""}`} onClick={() => setTab(k)}>{l}</button> ))
         }
-      </div>
-
-      {/* CONTENT */}
-      <div style={{ flex:1, overflow:"hidden", display:"flex", flexDirection:"column", maxHeight:"calc(100vh - 132px)" }}>
-
-        {/*  AGENT TAB  */}
+      </div> {/* CONTENT */}
+      <div style={{ flex:1, overflow:"hidden", display:"flex", flexDirection:"column", maxHeight:"calc(100vh - 132px)" }}> {/*  AGENT TAB  */}
         {!isLI && tab==="agent" && (
-          <div style={{ flex:1, overflowY:"auto", padding:20 }}>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1.15fr", gap:20, maxWidth:1140 }}>
-              <div className="card">
-                <div className="ct"> Agent Task Input</div>
-                <div style={{ display:"flex", flexDirection:"column", gap:13 }}>
-                  <div>
-                    <div className="sl">Task Type *</div>
-                    <select className="fs" value={form.taskType} onChange={e => setForm(p => ({ ...p, taskType:e.target.value }))}>
-                      <option value=""> Select task type </option>
-                      {(AGENT_TASKS[mode]||AGENT_TASKS.research).map(t => <option key={t.v} value={t.v}>{t.l}</option>)}
-                    </select>
-                  </div>
-                  <div>
-                    <div className="sl">Topic / Subject</div>
-                    <input className="fi" placeholder="e.g. LMM manufacturing M&A trends, power distribution sector..." value={form.topic} onChange={e => setForm(p => ({ ...p, topic:e.target.value }))} />
-                  </div>
-                  <div>
-                    <div className="sl">Target Audience {mode==="presentations" && <span style={{color:C.greenBright,fontSize:10}}>  Critical for PPTX</span>}</div>
-                    {mode==="presentations"
-                      ? <select className="fs" value={form.audience} onChange={e => setForm(p => ({ ...p, audience:e.target.value }))}>
-                          <option value=""> Select audience </option>
-                          <option value="LP / Institutional Investor">LP / Institutional Investor</option>
-                          <option value="Family Office / HNW">Family Office / HNW</option>
-                          <option value="Founder / Business Owner (Seller)">Founder / Business Owner (Seller)</option>
-                          <option value="Investment Banker / Intermediary">Investment Banker / Intermediary</option>
-                          <option value="Conference / Industry Event">Conference / Industry Event</option>
-                          <option value="Internal / Board">Internal / Board</option>
-                          <option value="Strategic Partner / OEM">Strategic Partner / OEM</option>
-                        </select>
-                      : <input className="fi" placeholder="e.g. LPs, manufacturing owners, industry press, internal team..." value={form.audience} onChange={e => setForm(p => ({ ...p, audience:e.target.value }))} />
-                    }
-                  </div>
-                  <div>
-                    <div className="sl">Context & Brief *</div>
-                    <textarea className="fta" rows={4} style={{ minHeight:110 }} placeholder="Key points to cover, specific data, purpose, any constraints or angles..." value={form.context} onChange={e => setForm(p => ({ ...p, context:e.target.value }))} />
-                  </div>
-                  <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
-                    <div>
-                      <div className="sl">Tone</div>
-                      <select className="fs" value={form.tone} onChange={e => setForm(p => ({ ...p, tone:e.target.value }))}>
-                        {TONES.map(t => <option key={t.v} value={t.v}>{t.l}</option>)}
-                      </select>
-                    </div>
-                    <div>
-                      <div className="sl">Output Format</div>
-                      <select className="fs" value={form.format} onChange={e => setForm(p => ({ ...p, format:e.target.value }))}>
-                        {FORMATS.map(f => <option key={f.v} value={f.v}>{f.l}</option>)}
-                      </select>
-                    </div>
-                  </div>
-                  <div>
-                    <div className="sl">Additional Notes</div>
-                    <textarea className="fta" rows={2} style={{ minHeight:56 }} placeholder="Word count targets, publication, deadline, specific angles to include or avoid..." value={form.notes} onChange={e => setForm(p => ({ ...p, notes:e.target.value }))} />
-                  </div>
-                  {/* FILE UPLOAD */}
-                  <div>
-                    <div className="sl">Reference Documents (optional)</div>
-                    <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}>
-                      <button className="upb" onClick={() => fileRef.current?.click()}>
-                        ° Upload Files
-                      </button>
-                      {uploadStatus && <span style={{ fontSize:11, color:"#1a5c3a", fontWeight:600 }}>{uploadStatus}</span>}
-                    </div>
-                    <input ref={fileRef} type="file" multiple accept=".txt,.pdf,.doc,.docx,.pptx,.csv,.md" style={{ display:"none" }} onChange={handleFileUpload} />
-                    {uploadedDocs.length > 0 && (
-                      <div style={{ marginTop:6, display:"flex", flexWrap:"wrap", gap:4 }}>
-                        {uploadedDocs.map((d,i) => (
-                          <span key={i} className="doctag">
-                            ° {d.name}
-                            <button className="deldoc" onClick={() => setUploadedDocs(p => p.filter((_,j) => j!==i))}></button>
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  {(form.format==="pptx"&&mode==="presentations") && (
-                    <div style={{ background:"#0e1a2e", border:"1px solid #B8962E", borderRadius:8, padding:"10px 14px", fontSize:12, color:"#41AD49", lineHeight:1.6, marginBottom:6 }}>
-                      <strong>° PPTX Mode Active</strong>  Morgan will search for current market data, build slides using the Catskill Partners investor deck template, and auto-download. Enable Web Search for best results.
-                    </div>
-                  )}
+          <div style={{ flex:1, overflowY:"auto", padding:20 }}> <div style={{ display:"grid", gridTemplateColumns:"1fr 1.15fr", gap:20, maxWidth:1140 }}> <div className="card"> <div className="ct"> Agent Task Input</div> <div style={{ display:"flex", flexDirection:"column", gap:13 }}> <div> <div className="sl">Task Type *</div> <select className="fs" value={form.taskType} onChange={e => setForm(p => ({ ...p, taskType:e.target.value }))}> <option value=""> Select task type </option> {(AGENT_TASKS[mode]||AGENT_TASKS.research).map(t => <option key={t.v} value={t.v}>{t.l}</option>)}
+                    </select> </div> <div> <div className="sl">Topic / Subject</div> <input className="fi" placeholder="e.g. LMM manufacturing M&A trends, power distribution sector..." value={form.topic} onChange={e => setForm(p => ({ ...p, topic:e.target.value }))} /> </div> <div> <div className="sl">Target Audience {mode==="presentations" && <span style={{color:C.greenBright,fontSize:10}}> Critical for PPTX</span>}</div> {mode==="presentations"
+                      ? <select className="fs" value={form.audience} onChange={e => setForm(p => ({ ...p, audience:e.target.value }))}> <option value=""> Select audience </option> <option value="LP / Institutional Investor">LP / Institutional Investor</option> <option value="Family Office / HNW">Family Office / HNW</option> <option value="Founder / Business Owner (Seller)">Founder / Business Owner (Seller)</option> <option value="Investment Banker / Intermediary">Investment Banker / Intermediary</option> <option value="Conference / Industry Event">Conference / Industry Event</option> <option value="Internal / Board">Internal / Board</option> <option value="Strategic Partner / OEM">Strategic Partner / OEM</option> </select> : <input className="fi" placeholder="e.g. LPs, manufacturing owners, industry press, internal team..." value={form.audience} onChange={e => setForm(p => ({ ...p, audience:e.target.value }))} /> }
+                  </div> <div> <div className="sl">Context & Brief *</div> <textarea className="fta" rows={4} style={{ minHeight:110 }} placeholder="Key points to cover, specific data, purpose, any constraints or angles..." value={form.context} onChange={e => setForm(p => ({ ...p, context:e.target.value }))} /> </div> <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}> <div> <div className="sl">Tone</div> <select className="fs" value={form.tone} onChange={e => setForm(p => ({ ...p, tone:e.target.value }))}> {TONES.map(t => <option key={t.v} value={t.v}>{t.l}</option>)}
+                      </select> </div> <div> <div className="sl">Output Format</div> <select className="fs" value={form.format} onChange={e => setForm(p => ({ ...p, format:e.target.value }))}> {FORMATS.map(f => <option key={f.v} value={f.v}>{f.l}</option>)}
+                      </select> </div> </div> <div> <div className="sl">Additional Notes</div> <textarea className="fta" rows={2} style={{ minHeight:56 }} placeholder="Word count targets, publication, deadline, specific angles to include or avoid..." value={form.notes} onChange={e => setForm(p => ({ ...p, notes:e.target.value }))} /> </div> {/* FILE UPLOAD */}
+                  <div> <div className="sl">Reference Documents (optional)</div> <div style={{ display:"flex", alignItems:"center", gap:10, flexWrap:"wrap" }}> <button className="upb" onClick={() => fileRef.current?.click()}> Upload Files
+                      </button> {uploadStatus && <span style={{ fontSize:11, color:"#1a5c3a", fontWeight:600 }}>{uploadStatus}</span>}
+                    </div> <input ref={fileRef} type="file" multiple accept=".txt,.pdf,.doc,.docx,.pptx,.csv,.md" style={{ display:"none" }} onChange={handleFileUpload} /> {uploadedDocs.length > 0 && (
+                      <div style={{ marginTop:6, display:"flex", flexWrap:"wrap", gap:4 }}> {uploadedDocs.map((d,i) => (
+                          <span key={i} className="doctag"> {d.name}
+                            <button className="deldoc" onClick={() => setUploadedDocs(p => p.filter((_,j) => j!==i))}></button> </span> ))}
+                      </div> )}
+                  </div> {(form.format==="pptx"&&mode==="presentations") && (
+                    <div style={{ background:"#0e1a2e", border:"1px solid #B8962E", borderRadius:8, padding:"10px 14px", fontSize:12, color:"#41AD49", lineHeight:1.6, marginBottom:6 }}> <strong> PPTX Mode Active</strong> Morgan will search for current market data, build slides using the Catskill Partners investor deck template, and auto-download. Enable Web Search for best results.
+                    </div> )}
                   <button className="genb" onClick={runAgent} disabled={agentLoading||!form.taskType||!form.context}
-                    style={{ background: (form.format==="pptx"&&mode==="presentations") ? "#1a5c3a" : "#1a5c3a" }}>
-                    {agentLoading
+                    style={{ background: (form.format==="pptx"&&mode==="presentations") ? "#1a5c3a" : "#1a5c3a" }}> {agentLoading
                       ? ((form.format==="pptx"&&mode==="presentations") ? " Researching + Building PPTX..." : " Generating...")
-                      : ((form.format==="pptx"&&mode==="presentations") ? "° Generate & Download PPTX" : " Generate Output")}
-                  </button>
-                  {form.format==="pptx" && mode==="presentations" && (
-                    <div style={{ fontSize:11, color:"#666", background:"#f0f4ff", border:"1px solid #c7d2fe", borderRadius:6, padding:"8px 12px", marginTop:4 }}>
-                      <strong style={{color:"#1a5c3a"}}>° PPTX Mode:</strong> Morgan will search for current market data, build structured slides using the Catskill template, and auto-download the deck when ready. Enable Web Search for best results.
-                    </div>
-                  )}
+                      : ((form.format==="pptx"&&mode==="presentations") ? " Generate & Download PPTX" : " Generate Output")}
+                  </button> {form.format==="pptx" && mode==="presentations" && (
+                    <div style={{ fontSize:11, color:"#666", background:"#f0f4ff", border:"1px solid #c7d2fe", borderRadius:6, padding:"8px 12px", marginTop:4 }}> <strong style={{color:"#1a5c3a"}}> PPTX Mode:</strong> Morgan will search for current market data, build structured slides using the Catskill template, and auto-download the deck when ready. Enable Web Search for best results.
+                    </div> )}
                   {pptxLoading && (
-                    <div style={{ display:"flex", alignItems:"center", gap:8, color:"#1a5c3a", fontWeight:600, fontSize:12 }}>
-                      <div className="dots"><span/><span/><span/></div> Building your branded PPTX...
-                    </div>
-                  )}
+                    <div style={{ display:"flex", alignItems:"center", gap:8, color:"#1a5c3a", fontWeight:600, fontSize:12 }}> <div className="dots"><span/><span/><span/></div> Building your branded PPTX...
+                    </div> )}
                   {pptxReady && <div style={{ fontSize:12, color:"#1a5c3a", fontWeight:700, padding:"6px 12px", background:"#f0faf4", borderRadius:5 }}>{pptxReady}</div>}
-                </div>
-              </div>
-
-              <div>
-                {agentLoading && (
-                  <div className="card" style={{ textAlign:"center", padding:55, color:C.gray }}>
-                    <div className="dots" style={{ justifyContent:"center", display:"flex", marginBottom:14 }}><span/><span/><span/></div>
-                    <div style={{ fontSize:13, fontWeight:500 }}>Morgan is working on it...</div>
-                  </div>
-                )}
+                </div> </div> <div> {agentLoading && (
+                  <div className="card" style={{ textAlign:"center", padding:55, color:C.gray }}> <div className="dots" style={{ justifyContent:"center", display:"flex", marginBottom:14 }}><span/><span/><span/></div> <div style={{ fontSize:13, fontWeight:500 }}>Morgan is working on it...</div> </div> )}
                 {agentOut && !agentLoading && (
-                  <div className="card">
-                    <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}>
-                      <div className="ct" style={{ marginBottom:0 }}>° Output · {agentOut.ts}</div>
-                      <div style={{ display:"flex", gap:6 }}>
-                        <button className="cpb" onClick={() => navigator.clipboard.writeText(agentOut.text)}>Copy </button>
-                        <button className="svb" onClick={() => setSavedOuts(p => [agentOut,...p.slice(0,9)])}>Save </button>
-                      </div>
-                    </div>
-                    <div className="ob">{fmt(agentOut.text.split('---MORGAN RECOMMENDATIONS---')[0])}</div>
-                    {agentOut.text.includes('---MORGAN RECOMMENDATIONS---') && (
-                      <div style={{ marginTop:12, background:"#0e1a2e", borderRadius:8, padding:"14px 18px", border:"1px solid #B8962E" }}>
-                        <div style={{ fontSize:10, fontWeight:700, color:"#41AD49", letterSpacing:"1.5px", textTransform:"uppercase", marginBottom:8 }}> Morgan's Strategic Recommendations</div>
-                        <div style={{ fontSize:13, lineHeight:1.75, color:"#e8e8e8" }}>{fmt(agentOut.text.split('---MORGAN RECOMMENDATIONS---')[1]?.split('---END RECOMMENDATIONS---')[0]?.trim())}</div>
-                      </div>
-                    )}
+                  <div className="card"> <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center", marginBottom:12 }}> <div className="ct" style={{ marginBottom:0 }}> Output · {agentOut.ts}</div> <div style={{ display:"flex", gap:6 }}> <button className="cpb" onClick={() => navigator.clipboard.writeText(agentOut.text)}>Copy </button> <button className="svb" onClick={() => setSavedOuts(p => [agentOut,...p.slice(0,9)])}>Save </button> </div> </div> <div className="ob">{fmt(agentOut.text.split('---MORGAN RECOMMENDATIONS---')[0])}</div> {agentOut.text.includes('---MORGAN RECOMMENDATIONS---') && (
+                      <div style={{ marginTop:12, background:"#0e1a2e", borderRadius:8, padding:"14px 18px", border:"1px solid #B8962E" }}> <div style={{ fontSize:10, fontWeight:700, color:"#41AD49", letterSpacing:"1.5px", textTransform:"uppercase", marginBottom:8 }}> Morgan's Strategic Recommendations</div> <div style={{ fontSize:13, lineHeight:1.75, color:"#e8e8e8" }}>{fmt(agentOut.text.split('---MORGAN RECOMMENDATIONS---')[1]?.split('---END RECOMMENDATIONS---')[0]?.trim())}</div> </div> )}
                     {agentOut.text.includes("---MORGAN RECOMMENDATIONS---") && (
-                      <div style={{ marginTop:12, background:"#1a5c3a", borderRadius:8, padding:"14px 18px", border:"1px solid #B8962E" }}>
-                        <div style={{ fontSize:10, fontWeight:700, color:"#41AD49", letterSpacing:"1.5px", textTransform:"uppercase", marginBottom:8 }}>
-                           Morgan's Strategic Recommendations
-                        </div>
-                        <div style={{ fontSize:13, lineHeight:1.75, color:"#f0f0f0" }}>
-                          {fmt(agentOut.text.split("---MORGAN RECOMMENDATIONS---")[1]?.split("---END RECOMMENDATIONS---")[0]?.trim())}
-                        </div>
-                      </div>
-                    )}
-                    <div style={{ marginTop:10, display:"flex", gap:8 }}>
-                      <button className="rgb" onClick={runAgent}> Regenerate</button>
-                      <button className="rgb" onClick={() => { sendChat(agentOut.text+"\n\nRefine this: tighter and more punchy."); setTab("chat"); }}>Refine in Chat </button>
-                    {mode==="presentations" && (
+                      <div style={{ marginTop:12, background:"#1a5c3a", borderRadius:8, padding:"14px 18px", border:"1px solid #B8962E" }}> <div style={{ fontSize:10, fontWeight:700, color:"#41AD49", letterSpacing:"1.5px", textTransform:"uppercase", marginBottom:8 }}> Morgan's Strategic Recommendations
+                        </div> <div style={{ fontSize:13, lineHeight:1.75, color:"#f0f0f0" }}> {fmt(agentOut.text.split("---MORGAN RECOMMENDATIONS---")[1]?.split("---END RECOMMENDATIONS---")[0]?.trim())}
+                        </div> </div> )}
+                    <div style={{ marginTop:10, display:"flex", gap:8 }}> <button className="rgb" onClick={runAgent}> Regenerate</button> <button className="rgb" onClick={() => { sendChat(agentOut.text+"\n\nRefine this: tighter and more punchy."); setTab("chat"); }}>Refine in Chat </button> {mode==="presentations" && (
                       <button className="sendb" style={{ background:pptxLoading?"#888":"#1a5c3a", fontSize:12, padding:"8px 16px", display:"flex", alignItems:"center", gap:6 }}
                         onClick={() => downloadPptx(agentOut.text, agentOut.form?.topic || "Catskill Partners Presentation")}
-                        disabled={pptxLoading}>
-                        {pptxLoading ? " Building PPTX..." : "°¥ Download as PPTX"}
-                      </button>
-                    )}
+                        disabled={pptxLoading}> {pptxLoading ? " Building PPTX..." : " Download as PPTX"}
+                      </button> )}
                     {pptxReady && <span style={{ fontSize:11, color:"#1a5c3a", fontWeight:700 }}>{pptxReady}</span>}
-                    </div>
-                  </div>
-                )}
+                    </div> </div> )}
                 {!agentOut && !agentLoading && (
-                  <div className="card" style={{ border:"2px dashed #e8e8e8", textAlign:"center", padding:"65px 30px", color:"#ccc" }}>
-                    <div style={{ fontSize:36, marginBottom:12 }}>{mc.icon}</div>
-                    <div style={{ fontSize:14, fontWeight:600, color:"#aaa", marginBottom:6 }}>Output appears here</div>
-                    <div style={{ fontSize:12 }}>Fill in the brief on the left and hit Generate</div>
-                  </div>
-                )}
+                  <div className="card" style={{ border:"2px dashed #e8e8e8", textAlign:"center", padding:"65px 30px", color:"#ccc" }}> <div style={{ fontSize:36, marginBottom:12 }}>{mc.icon}</div> <div style={{ fontSize:14, fontWeight:600, color:"#aaa", marginBottom:6 }}>Output appears here</div> <div style={{ fontSize:12 }}>Fill in the brief on the left and hit Generate</div> </div> )}
                 {morganInsights.length > 0 && mode==="presentations" && (
-                  <div className="card" style={{ marginTop:12, borderLeft:"3px solid #B8962E" }}>
-                    <div style={{ fontSize:10, fontWeight:700, color:"#41AD49", letterSpacing:"1.5px", textTransform:"uppercase", marginBottom:8 }}>
-                      ° Morgan's Positioning Insights
-                    </div>
-                    <div style={{ fontSize:11, color:"#666", marginBottom:8 }}>Recommendations surfaced from research and context:</div>
-                    {morganInsights.slice(0,5).map((ins,i) => (
-                      <div key={i} style={{ display:"flex", gap:8, padding:"6px 0", borderBottom:i<4?"1px solid #f0f0f0":"none" }}>
-                        <span style={{ color:"#41AD49", flexShrink:0, fontSize:12 }}></span>
-                        <div>
-                          <div style={{ fontSize:12, color:"#1a1a1a" }}>{ins.text}</div>
-                          {ins.topic && <div style={{ fontSize:10, color:"#aaa", marginTop:2 }}>{ins.topic} · {ins.ts}</div>}
-                        </div>
-                      </div>
-                    ))}
-                    <button className="rgb" style={{ marginTop:8, fontSize:10 }} onClick={() => setMorganInsights([])}>Clear</button>
-                  </div>
-                )}
+                  <div className="card" style={{ marginTop:12, borderLeft:"3px solid #B8962E" }}> <div style={{ fontSize:10, fontWeight:700, color:"#41AD49", letterSpacing:"1.5px", textTransform:"uppercase", marginBottom:8 }}> Morgan's Positioning Insights
+                    </div> <div style={{ fontSize:11, color:"#666", marginBottom:8 }}>Recommendations surfaced from research and context:</div> {morganInsights.slice(0,5).map((ins,i) => (
+                      <div key={i} style={{ display:"flex", gap:8, padding:"6px 0", borderBottom:i<4?"1px solid #f0f0f0":"none" }}>  <div> <div style={{ fontSize:12, color:"#1a1a1a" }}>{ins.text}</div> {ins.topic && <div style={{ fontSize:10, color:"#aaa", marginTop:2 }}>{ins.topic} · {ins.ts}</div>}
+                        </div> </div> ))}
+                    <button className="rgb" style={{ marginTop:8, fontSize:10 }} onClick={() => setMorganInsights([])}>Clear</button> </div> )}
                 {savedOuts.length > 0 && (
-                  <div className="card" style={{ marginTop:12 }}>
-                    <div className="ct">° Saved Outputs ({savedOuts.length})</div>
-                    {savedOuts.slice(0,3).map((o,i) => (
-                      <div key={i} style={{ padding:"8px 0", borderBottom:i<2?`1px solid ${C.border}`:"none" }}>
-                        <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}>
-                          <div style={{ fontSize:12, fontWeight:600 }}>{o.form?.taskType||"Output"} · {o.ts}</div>
-                          <div style={{ display:"flex", gap:5 }}>
-                            <button className="cpb" onClick={() => navigator.clipboard.writeText(o.text)}>Copy</button>
-                            <button className="cpb" onClick={() => setAgentOut(o)}>View</button>
-                          </div>
-                        </div>
-                        <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>{o.text.slice(0,90)}...</div>
-                      </div>
-                    ))}
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        )}
+                  <div className="card" style={{ marginTop:12 }}> <div className="ct"> Saved Outputs ({savedOuts.length})</div> {savedOuts.slice(0,3).map((o,i) => (
+                      <div key={i} style={{ padding:"8px 0", borderBottom:i<2?`1px solid ${C.border}`:"none" }}> <div style={{ display:"flex", justifyContent:"space-between", alignItems:"center" }}> <div style={{ fontSize:12, fontWeight:600 }}>{o.form?.taskType||"Output"} · {o.ts}</div> <div style={{ display:"flex", gap:5 }}> <button className="cpb" onClick={() => navigator.clipboard.writeText(o.text)}>Copy</button> <button className="cpb" onClick={() => setAgentOut(o)}>View</button> </div> </div> <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>{o.text.slice(0,90)}...</div> </div> ))}
+                  </div> )}
+              </div> </div> </div> )}
 
         {/*  CHAT TAB  */}
         {!isLI && tab==="chat" && (
-          <>
-            <div style={{ flex:1, overflowY:"auto", padding:"18px 20px", display:"flex", flexDirection:"column", gap:14 }}>
-              {msgs[mode].length===0 && (
-                <div style={{ textAlign:"center", padding:"50px 20px", color:"#ccc" }}>
-                  <div style={{ fontSize:30, marginBottom:10 }}>°</div>
-                  <div style={{ fontSize:14, fontWeight:600, color:"#bbb" }}>Chat with Morgan Cole</div>
-                  <div style={{ fontSize:12, marginTop:4 }}>
-                    {mode==="research"&&"Ask for research reports, sector analysis, competitive intel..."}
+          <> <div style={{ flex:1, overflowY:"auto", padding:"18px 20px", display:"flex", flexDirection:"column", gap:14 }}> {msgs[mode].length===0 && (
+                <div style={{ textAlign:"center", padding:"50px 20px", color:"#ccc" }}> <div style={{ fontSize:30, marginBottom:10 }}></div> <div style={{ fontSize:14, fontWeight:600, color:"#bbb" }}>Chat with Morgan Cole</div> <div style={{ fontSize:12, marginTop:4 }}> {mode==="research"&&"Ask for research reports, sector analysis, competitive intel..."}
                     {mode==="content"&&"Draft articles, press releases, newsletters, case studies..."}
                     {mode==="presentations"&&"Build slides, talking points, deck narratives..."}
                     {mode==="linkedin"&&"Draft or refine a LinkedIn post..."}
-                  </div>
-                </div>
-              )}
+                  </div> </div> )}
               {msgs[mode].map((m,i) => (
-                <div key={i} style={{ display:"flex", flexDirection:"column", alignItems:m.role==="user"?"flex-end":"flex-start" }}>
-                  <div className="ml" style={{ paddingLeft:m.role==="assistant"?4:0, paddingRight:m.role==="user"?4:0 }}>
-                    {m.role==="user"?"YOU":"MORGAN COLE · CATSKILL PARTNERS"}
-                  </div>
-                  <div className={m.role==="user"?"mu":"ma"}>{m.role==="assistant"?fmt(m.content):m.content}</div>
-                  {m.role==="assistant"&&<button className="cpb" style={{ marginTop:5 }} onClick={() => navigator.clipboard.writeText(m.content)}>copy </button>}
-                </div>
-              ))}
+                <div key={i} style={{ display:"flex", flexDirection:"column", alignItems:m.role==="user"?"flex-end":"flex-start" }}> <div className="ml" style={{ paddingLeft:m.role==="assistant"?4:0, paddingRight:m.role==="user"?4:0 }}> {m.role==="user"?"YOU":"MORGAN COLE · CATSKILL PARTNERS"}
+                  </div> <div className={m.role==="user"?"mu":"ma"}>{m.role==="assistant"?fmt(m.content):m.content}</div> {m.role==="assistant"&&<button className="cpb" style={{ marginTop:5 }} onClick={() => navigator.clipboard.writeText(m.content)}>copy </button>}
+                </div> ))}
               {loading && (
-                <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-start" }}>
-                  <div className="ml" style={{ paddingLeft:4 }}>MORGAN COLE</div>
-                  <div className="ma"><div className="dots"><span/><span/><span/></div></div>
-                </div>
-              )}
-              <div ref={endRef}/>
-            </div>
-            <div style={{ padding:"12px 20px 16px", borderTop:`1px solid ${C.border}`, background:C.white, display:"flex", gap:10, alignItems:"flex-end" }}>
-              <textarea className="ita" value={input} onChange={e => setInput(e.target.value)}
+                <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-start" }}> <div className="ml" style={{ paddingLeft:4 }}>MORGAN COLE</div> <div className="ma"><div className="dots"><span/><span/><span/></div></div> </div> )}
+              <div ref={endRef}/> </div> <div style={{ padding:"12px 20px 16px", borderTop:`1px solid ${C.border}`, background:C.white, display:"flex", gap:10, alignItems:"flex-end" }}> <textarea className="ita" value={input} onChange={e => setInput(e.target.value)}
                 onKeyDown={e => { if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();sendChat(input);} }}
-                placeholder={mode==="research"?"Ask for a report, sector analysis, competitive brief...":mode==="content"?"Draft an article, press release, newsletter section...":mode==="presentations"?"Build slides, talking points, deck narrative...":"Draft or refine a LinkedIn post..."} rows={1}/>
-              <button className="sendb" onClick={() => sendChat(input)} disabled={loading||!input.trim()}>Send </button>
-            </div>
-          </>
-        )}
+                placeholder={mode==="research"?"Ask for a report, sector analysis, competitive brief...":mode==="content"?"Draft an article, press release, newsletter section...":mode==="presentations"?"Build slides, talking points, deck narrative...":"Draft or refine a LinkedIn post..."} rows={1}/> <button className="sendb" onClick={() => sendChat(input)} disabled={loading||!input.trim()}>Send </button> </div> </> )}
 
         {/*  QUICK ACTIONS TAB  */}
         {!isLI && tab==="quick" && (
-          <div style={{ padding:20, overflowY:"auto", flex:1 }}>
-            <div style={{ marginBottom:14, padding:"10px 16px", background:mc.bg, border:`1px solid ${mc.color}30`, borderRadius:8 }}>
-              <div style={{ fontSize:11, fontWeight:700, letterSpacing:"2px", color:mc.color, textTransform:"uppercase" }}>{mc.label} · Quick Actions</div>
-              <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>Click any action to fire it into chat</div>
-            </div>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
-              {(QA[mode]||[]).map((a,i) => (
-                <button key={i} className="qab" onClick={() => { setTab("chat"); setTimeout(()=>sendChat(a.prompt),80); }}>
-                  <span style={{ fontSize:20, flexShrink:0 }}>{a.icon}</span>
-                  <div>
-                    <div style={{ fontWeight:700, color:mc.color, fontSize:12, marginBottom:3 }}>{a.label}</div>
-                    <div style={{ fontSize:10, color:"#aaa", lineHeight:1.5 }}>{a.prompt.slice(0,75)}...</div>
-                  </div>
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
+          <div style={{ padding:20, overflowY:"auto", flex:1 }}> <div style={{ marginBottom:14, padding:"10px 16px", background:mc.bg, border:`1px solid ${mc.color}30`, borderRadius:8 }}> <div style={{ fontSize:11, fontWeight:700, letterSpacing:"2px", color:mc.color, textTransform:"uppercase" }}>{mc.label} · Quick Actions</div> <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>Click any action to fire it into chat</div> </div> <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}> {(QA[mode]||[]).map((a,i) => (
+                <button key={i} className="qab" onClick={() => { setTab("chat"); setTimeout(()=>sendChat(a.prompt),80); }}> <span style={{ fontSize:20, flexShrink:0 }}>{a.icon}</span> <div> <div style={{ fontWeight:700, color:mc.color, fontSize:12, marginBottom:3 }}>{a.label}</div> <div style={{ fontSize:10, color:"#aaa", lineHeight:1.5 }}>{a.prompt.slice(0,75)}...</div> </div> </button> ))}
+            </div> </div> )}
 
         {!isLI && tab==="followup" && (
-          <div style={{ padding:20, overflowY:"auto", flex:1 }}>
-            <div style={{ marginBottom:14, padding:"12px 16px", background:"#1a5c3a", border:"1px solid #B8962E", borderRadius:8, display:"flex", alignItems:"center", justifyContent:"space-between" }}>
-              <div>
-                <div style={{ fontSize:11, fontWeight:700, letterSpacing:"2px", color:"#41AD49", textTransform:"uppercase" }}>° CRM Follow-Up Intelligence</div>
-                <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>Morgan has access to your IB, LP, and family office contacts. Click any action to get prioritized follow-up recommendations.</div>
-              </div>
-            </div>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}>
-              {(QA.followup||[]).map((a,i) => (
-                <button key={i} className="qab" style={{ borderLeft:"3px solid #B8962E" }} onClick={() => { setTab("chat"); setTimeout(()=>sendChat(a.prompt),80); }}>
-                  <span style={{ fontSize:20, flexShrink:0 }}>{a.icon}</span>
-                  <div>
-                    <div style={{ fontWeight:700, color:"#41AD49", fontSize:12, marginBottom:3 }}>{a.label}</div>
-                    <div style={{ fontSize:10, color:"#aaa", lineHeight:1.5 }}>{a.prompt.slice(0,75)}...</div>
-                  </div>
-                </button>
-              ))}
-            </div>
-            <div style={{ marginTop:16, padding:"10px 14px", background:"#f8f8f8", borderRadius:8, border:"1px solid #e8e8e8" }}>
-              <div style={{ fontSize:10, color:"#888", lineHeight:1.6 }}>
-                <strong>Data sources:</strong> CP_Tracker_Draft.xlsx · BD_Active_Target_List_Q1_2026.xlsx<br/>
-                <strong>OneDrive:</strong> <a href="https://1drv.ms/x/c/18334eea8b635807/IQCX5zWbN2GFTYb2CrCMFHH7AduqXb_egMrP9_TMTgToW6Y" target="_blank" style={{color:"#1a5c3a"}}>CP Tracker</a> · <a href="https://1drv.ms/x/c/18334eea8b635807/IQBvmYp9dxvwSJsMd2guPVFRAcS96KoSD4XaIk7ahY8_ZlQ" target="_blank" style={{color:"#1a5c3a"}}>BD Target List</a><br/>
-                <strong>To refresh data:</strong> Upload updated Excel files via the file upload button in Agent tab, then ask Morgan to update its CRM context.
-              </div>
-            </div>
-          </div>
-        )}
+          <div style={{ padding:20, overflowY:"auto", flex:1 }}> <div style={{ marginBottom:14, padding:"12px 16px", background:"#1a5c3a", border:"1px solid #B8962E", borderRadius:8, display:"flex", alignItems:"center", justifyContent:"space-between" }}> <div> <div style={{ fontSize:11, fontWeight:700, letterSpacing:"2px", color:"#41AD49", textTransform:"uppercase" }}> CRM Follow-Up Intelligence</div> <div style={{ fontSize:11, color:"#aaa", marginTop:2 }}>Morgan has access to your IB, LP, and family office contacts. Click any action to get prioritized follow-up recommendations.</div> </div> </div> <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:10 }}> {(QA.followup||[]).map((a,i) => (
+                <button key={i} className="qab" style={{ borderLeft:"3px solid #B8962E" }} onClick={() => { setTab("chat"); setTimeout(()=>sendChat(a.prompt),80); }}> <span style={{ fontSize:20, flexShrink:0 }}>{a.icon}</span> <div> <div style={{ fontWeight:700, color:"#41AD49", fontSize:12, marginBottom:3 }}>{a.label}</div> <div style={{ fontSize:10, color:"#aaa", lineHeight:1.5 }}>{a.prompt.slice(0,75)}...</div> </div> </button> ))}
+            </div> <div style={{ marginTop:16, padding:"10px 14px", background:"#f8f8f8", borderRadius:8, border:"1px solid #e8e8e8" }}> <div style={{ fontSize:10, color:"#888", lineHeight:1.6 }}> <strong>Data sources:</strong> CP_Tracker_Draft.xlsx · BD_Active_Target_List_Q1_2026.xlsx<br/> <strong>OneDrive:</strong> <a href="https://1drv.ms/x/c/18334eea8b635807/IQCX5zWbN2GFTYb2CrCMFHH7AduqXb_egMrP9_TMTgToW6Y" target="_blank" style={{color:"#1a5c3a"}}>CP Tracker</a> · <a href="https://1drv.ms/x/c/18334eea8b635807/IQBvmYp9dxvwSJsMd2guPVFRAcS96KoSD4XaIk7ahY8_ZlQ" target="_blank" style={{color:"#1a5c3a"}}>BD Target List</a><br/> <strong>To refresh data:</strong> Upload updated Excel files via the file upload button in Agent tab, then ask Morgan to update its CRM context.
+              </div> </div> </div> )}
 
         {/*  LINKEDIN STUDIO  */}
 
         {isLI && tab==="li_gen" && (
-          <div style={{ flex:1, overflowY:"auto", padding:20 }}>
-            <div style={{ display:"grid", gridTemplateColumns:"1fr 1.2fr", gap:20, maxWidth:1140 }}>
-              <div className="card" style={{ borderTop:"3px solid #0a66c2" }}>
-                <div style={{ display:"flex", alignItems:"center", gap:9, marginBottom:14 }}>
-                  <div style={{ width:22, height:22, background:"#0a66c2", borderRadius:4, display:"flex", alignItems:"center", justifyContent:"center" }}>
-                    <span style={{ color:"#fff", fontSize:12, fontWeight:700 }}>in</span>
-                  </div>
-                  <div className="ct" style={{ marginBottom:0 }}>LinkedIn Post Generator</div>
-                </div>
-                <div style={{ display:"flex", flexDirection:"column", gap:13 }}>
-                  <div>
-                    <div className="sl">Scheduled Topic</div>
-                    <select className="fs" value={liFform.topicIdx} onChange={e => setLiForm(p => ({ ...p, topicIdx:+e.target.value, custom:"" }))}>
-                      {LI_SCHEDULE.map((t,i) => <option key={i} value={i}>{t.date}  {t.topic}{t.status==="due"?" ° DUE":""}</option>)}
-                    </select>
-                  </div>
-                  <div style={{ padding:"10px 13px", background:"#eff6ff", border:"1px solid #bfdbfe", borderRadius:7 }}>
-                    <div style={{ fontSize:11, fontWeight:700, color:"#0a66c2", marginBottom:3 }}>TOPIC THEME</div>
-                    <div style={{ fontSize:12, color:"#1e40af", lineHeight:1.6 }}>{LI_SCHEDULE[liFform.topicIdx]?.theme}</div>
-                  </div>
-                  <div>
-                    <div className="sl">Or Custom Topic</div>
-                    <input className="fi" placeholder="Enter a different topic..." value={liFform.custom} onChange={e => setLiForm(p => ({ ...p, custom:e.target.value }))} />
-                  </div>
-                  <div>
-                    <div className="sl">Specific Data / Stats to Include</div>
-                    <textarea className="fta" rows={3} style={{ minHeight:70 }} placeholder="e.g. '60%+ of LMM owners are 55+, $250B ICT demand, 300bps margin expansion...'" value={liFform.data} onChange={e => setLiForm(p => ({ ...p, data:e.target.value }))} />
-                  </div>
-                  <div>
-                    <div className="sl">Specific Angle / POV</div>
-                    <textarea className="fta" rows={2} style={{ minHeight:55 }} placeholder="Contrarian take, personal story, or specific angle..." value={liFform.angle} onChange={e => setLiForm(p => ({ ...p, angle:e.target.value }))} />
-                  </div>
-                  {/* FILE UPLOAD FOR LI */}
-                  <div>
-                    <div className="sl">Reference Documents (optional)</div>
-                    <button className="upb" onClick={() => fileRef.current?.click()}>° Upload Files</button>
-                    <input ref={fileRef} type="file" multiple accept=".txt,.pdf,.doc,.docx,.pptx,.csv,.md" style={{ display:"none" }} onChange={handleFileUpload} />
-                    {uploadedDocs.length > 0 && (
-                      <div style={{ marginTop:6, display:"flex", flexWrap:"wrap", gap:4 }}>
-                        {uploadedDocs.map((d,i) => (
-                          <span key={i} className="doctag">° {d.name} <button className="deldoc" onClick={() => setUploadedDocs(p => p.filter((_,j) => j!==i))}></button></span>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  <button className="lib" onClick={genLIPost} disabled={liLoading}>
-                    {liLoading?" Generating post...":" Generate LinkedIn Post"}
-                  </button>
-                </div>
-              </div>
-              <div>
-                {liLoading&&<div className="card" style={{ textAlign:"center", padding:65 }}><div className="dots" style={{ justifyContent:"center", display:"flex", marginBottom:14 }}><span/><span/><span/></div><div style={{ fontSize:13, fontWeight:500, color:C.gray }}>Drafting your post...</div></div>}
+          <div style={{ flex:1, overflowY:"auto", padding:20 }}> <div style={{ display:"grid", gridTemplateColumns:"1fr 1.2fr", gap:20, maxWidth:1140 }}> <div className="card" style={{ borderTop:"3px solid #0a66c2" }}> <div style={{ display:"flex", alignItems:"center", gap:9, marginBottom:14 }}> <div style={{ width:22, height:22, background:"#0a66c2", borderRadius:4, display:"flex", alignItems:"center", justifyContent:"center" }}> <span style={{ color:"#fff", fontSize:12, fontWeight:700 }}>in</span> </div> <div className="ct" style={{ marginBottom:0 }}>LinkedIn Post Generator</div> </div> <div style={{ display:"flex", flexDirection:"column", gap:13 }}> <div> <div className="sl">Scheduled Topic</div> <select className="fs" value={liFform.topicIdx} onChange={e => setLiForm(p => ({ ...p, topicIdx:+e.target.value, custom:"" }))}> {LI_SCHEDULE.map((t,i) => <option key={i} value={i}>{t.date}  {t.topic}{t.status==="due"?"  DUE":""}</option>)}
+                    </select> </div> <div style={{ padding:"10px 13px", background:"#eff6ff", border:"1px solid #bfdbfe", borderRadius:7 }}> <div style={{ fontSize:11, fontWeight:700, color:"#0a66c2", marginBottom:3 }}>TOPIC THEME</div> <div style={{ fontSize:12, color:"#1e40af", lineHeight:1.6 }}>{LI_SCHEDULE[liFform.topicIdx]?.theme}</div> </div> <div> <div className="sl">Or Custom Topic</div> <input className="fi" placeholder="Enter a different topic..." value={liFform.custom} onChange={e => setLiForm(p => ({ ...p, custom:e.target.value }))} /> </div> <div> <div className="sl">Specific Data / Stats to Include</div> <textarea className="fta" rows={3} style={{ minHeight:70 }} placeholder="e.g. '60%+ of LMM owners are 55+, $250B ICT demand, 300bps margin expansion...'" value={liFform.data} onChange={e => setLiForm(p => ({ ...p, data:e.target.value }))} /> </div> <div> <div className="sl">Specific Angle / POV</div> <textarea className="fta" rows={2} style={{ minHeight:55 }} placeholder="Contrarian take, personal story, or specific angle..." value={liFform.angle} onChange={e => setLiForm(p => ({ ...p, angle:e.target.value }))} /> </div> {/* FILE UPLOAD FOR LI */}
+                  <div> <div className="sl">Reference Documents (optional)</div> <button className="upb" onClick={() => fileRef.current?.click()}> Upload Files</button> <input ref={fileRef} type="file" multiple accept=".txt,.pdf,.doc,.docx,.pptx,.csv,.md" style={{ display:"none" }} onChange={handleFileUpload} /> {uploadedDocs.length > 0 && (
+                      <div style={{ marginTop:6, display:"flex", flexWrap:"wrap", gap:4 }}> {uploadedDocs.map((d,i) => (
+                          <span key={i} className="doctag"> {d.name} <button className="deldoc" onClick={() => setUploadedDocs(p => p.filter((_,j) => j!==i))}></button></span> ))}
+                      </div> )}
+                  </div> <button className="lib" onClick={genLIPost} disabled={liLoading}> {liLoading?" Generating post...":" Generate LinkedIn Post"}
+                  </button> </div> </div> <div> {liLoading&&<div className="card" style={{ textAlign:"center", padding:65 }}><div className="dots" style={{ justifyContent:"center", display:"flex", marginBottom:14 }}><span/><span/><span/></div><div style={{ fontSize:13, fontWeight:500, color:C.gray }}>Drafting your post...</div></div>}
                 {liOut&&!liLoading&&(
-                  <div>
-                    <div className="pp">
-                      <div style={{ padding:"13px 16px", borderBottom:`1px solid ${C.border}`, background:"#f8f9fa", display:"flex", alignItems:"center", gap:10 }}>
-                        <div style={{ width:36, height:36, background:C.green, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:14 }}>CP</div>
-                        <div><div style={{ fontSize:13, fontWeight:600 }}>Catskill Partners</div><div style={{ fontSize:11, color:"#aaa" }}>Private Equity · {liOut.date}</div></div>
-                        <span style={{ marginLeft:"auto", background:"#fef3c7", color:"#92400e", border:"1px solid #fde68a", borderRadius:4, padding:"2px 8px", fontSize:10, fontWeight:700 }}>DRAFT</span>
-                      </div>
-                      <div style={{ padding:16, fontSize:14, lineHeight:1.8, whiteSpace:"pre-wrap", maxHeight:280, overflowY:"auto" }}>{liOut.postText}</div>
-                      {liOut.hashtags?.length>0&&<div style={{ padding:"10px 16px", borderTop:`1px solid #f0f0f0`, background:"#fafafa" }}>{liOut.hashtags.map((h,i)=><span key={i} className="hp">{h}</span>)}</div>}
-                    </div>
-                    {liOut.graphic&&<div className="card" style={{ marginTop:10, borderLeft:"3px solid #f59e0b" }}><div style={{ fontSize:10, fontWeight:700, color:"#92400e", letterSpacing:"1px", textTransform:"uppercase", marginBottom:6 }}>° Graphic Concept</div><div style={{ fontSize:13, lineHeight:1.65 }}>{liOut.graphic}</div></div>}
-                    {liOut.keyMsg&&<div className="card" style={{ marginTop:10, borderLeft:"3px solid #3db857" }}><div style={{ fontSize:10, fontWeight:700, color:C.green, letterSpacing:"1px", textTransform:"uppercase", marginBottom:6 }}>°£ Key Message</div><div style={{ fontSize:13, fontWeight:500, lineHeight:1.65 }}>{liOut.keyMsg}</div></div>}
-                    <div style={{ display:"flex", gap:8, marginTop:12 }}>
-                      <button className="apb" onClick={() => { setDrafts(p=>[{...liOut,status:"approved"},...p.slice(0,11)]); setLiOut(null); }}> Approve Draft</button>
-                      <button className="rgb" onClick={genLIPost}> Regenerate</button>
-                      <button className="cpb" style={{ padding:"8px 14px", fontSize:12 }} onClick={() => navigator.clipboard.writeText(liOut.postText+"\n\n"+liOut.hashtags?.join(" "))}>Copy Post </button>
-                    </div>
-                  </div>
-                )}
-                {!liOut&&!liLoading&&<div className="card" style={{ border:"2px dashed #e8e8e8", textAlign:"center", padding:"65px 30px", color:"#ccc" }}><div style={{ fontSize:34, marginBottom:12 }}>°</div><div style={{ fontSize:14, fontWeight:600, color:"#bbb", marginBottom:6 }}>Post Preview Appears Here</div><div style={{ fontSize:12 }}>Select a topic and hit Generate</div></div>}
-              </div>
-            </div>
-          </div>
-        )}
+                  <div> <div className="pp"> <div style={{ padding:"13px 16px", borderBottom:`1px solid ${C.border}`, background:"#f8f9fa", display:"flex", alignItems:"center", gap:10 }}> <div style={{ width:36, height:36, background:C.green, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:14 }}>CP</div> <div><div style={{ fontSize:13, fontWeight:600 }}>Catskill Partners</div><div style={{ fontSize:11, color:"#aaa" }}>Private Equity · {liOut.date}</div></div> <span style={{ marginLeft:"auto", background:"#fef3c7", color:"#92400e", border:"1px solid #fde68a", borderRadius:4, padding:"2px 8px", fontSize:10, fontWeight:700 }}>DRAFT</span> </div> <div style={{ padding:16, fontSize:14, lineHeight:1.8, whiteSpace:"pre-wrap", maxHeight:280, overflowY:"auto" }}>{liOut.postText}</div> {liOut.hashtags?.length>0&&<div style={{ padding:"10px 16px", borderTop:`1px solid #f0f0f0`, background:"#fafafa" }}>{liOut.hashtags.map((h,i)=><span key={i} className="hp">{h}</span>)}</div>}
+                    </div> {liOut.graphic&&<div className="card" style={{ marginTop:10, borderLeft:"3px solid #f59e0b" }}><div style={{ fontSize:10, fontWeight:700, color:"#92400e", letterSpacing:"1px", textTransform:"uppercase", marginBottom:6 }}> Graphic Concept</div><div style={{ fontSize:13, lineHeight:1.65 }}>{liOut.graphic}</div></div>}
+                    {liOut.keyMsg&&<div className="card" style={{ marginTop:10, borderLeft:"3px solid #3db857" }}><div style={{ fontSize:10, fontWeight:700, color:C.green, letterSpacing:"1px", textTransform:"uppercase", marginBottom:6 }}> Key Message</div><div style={{ fontSize:13, fontWeight:500, lineHeight:1.65 }}>{liOut.keyMsg}</div></div>}
+                    <div style={{ display:"flex", gap:8, marginTop:12 }}> <button className="apb" onClick={() => { setDrafts(p=>[{...liOut,status:"approved"},...p.slice(0,11)]); setLiOut(null); }}> Approve Draft</button> <button className="rgb" onClick={genLIPost}> Regenerate</button> <button className="cpb" style={{ padding:"8px 14px", fontSize:12 }} onClick={() => navigator.clipboard.writeText(liOut.postText+"\n\n"+liOut.hashtags?.join(" "))}>Copy Post </button> </div> </div> )}
+                {!liOut&&!liLoading&&<div className="card" style={{ border:"2px dashed #e8e8e8", textAlign:"center", padding:"65px 30px", color:"#ccc" }}><div style={{ fontSize:34, marginBottom:12 }}></div><div style={{ fontSize:14, fontWeight:600, color:"#bbb", marginBottom:6 }}>Post Preview Appears Here</div><div style={{ fontSize:12 }}>Select a topic and hit Generate</div></div>}
+              </div> </div> </div> )}
 
         {isLI && tab==="li_sched" && (
-          <div style={{ padding:20, overflowY:"auto", flex:1 }}>
-            <div className="card" style={{ maxWidth:700 }}>
-              <div className="ct">° Biweekly Post Schedule  2026</div>
-              <div style={{ fontSize:12, color:"#aaa", marginBottom:16 }}>One post every two weeks. Click any topic to open it in the generator.</div>
-              {LI_SCHEDULE.map((t,i) => (
-                <div key={i} className={`lsc ${liFform.topicIdx===i?"sel":""}`} onClick={() => { setLiForm(p=>({...p,topicIdx:i,custom:""})); setTab("li_gen"); }}>
-                  <div style={{ textAlign:"center", flexShrink:0, width:52 }}>
-                    <div style={{ fontSize:9, color:"#aaa", fontWeight:700 }}>{t.date.split(" ")[0].toUpperCase()}</div>
-                    <div style={{ fontSize:20, fontWeight:700, color:t.status==="due"?"#0a66c2":C.black }}>{t.date.split(", ")[0].split(" ")[1]}</div>
-                  </div>
-                  <div style={{ flex:1 }}>
-                    <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:4 }}>
-                      <div style={{ fontSize:13, fontWeight:600 }}>{t.topic}</div>
-                      {t.status==="due"&&<span style={{ background:"#fef3c7", color:"#92400e", border:"1px solid #fde68a", borderRadius:4, padding:"1px 7px", fontSize:10, fontWeight:700 }}>DUE</span>}
+          <div style={{ padding:20, overflowY:"auto", flex:1 }}> <div className="card" style={{ maxWidth:700 }}> <div className="ct"> Biweekly Post Schedule  2026</div> <div style={{ fontSize:12, color:"#aaa", marginBottom:16 }}>One post every two weeks. Click any topic to open it in the generator.</div> {LI_SCHEDULE.map((t,i) => (
+                <div key={i} className={`lsc ${liFform.topicIdx===i?"sel":""}`} onClick={() => { setLiForm(p=>({...p,topicIdx:i,custom:""})); setTab("li_gen"); }}> <div style={{ textAlign:"center", flexShrink:0, width:52 }}> <div style={{ fontSize:9, color:"#aaa", fontWeight:700 }}>{t.date.split(" ")[0].toUpperCase()}</div> <div style={{ fontSize:20, fontWeight:700, color:t.status==="due"?"#0a66c2":C.black }}>{t.date.split(", ")[0].split(" ")[1]}</div> </div> <div style={{ flex:1 }}> <div style={{ display:"flex", alignItems:"center", gap:6, marginBottom:4 }}> <div style={{ fontSize:13, fontWeight:600 }}>{t.topic}</div> {t.status==="due"&&<span style={{ background:"#fef3c7", color:"#92400e", border:"1px solid #fde68a", borderRadius:4, padding:"1px 7px", fontSize:10, fontWeight:700 }}>DUE</span>}
                       {t.status==="upcoming"&&<span style={{ background:"#f0f7f3", color:C.green, border:`1px solid #c8e6cc`, borderRadius:4, padding:"1px 7px", fontSize:10, fontWeight:600 }}>Upcoming</span>}
-                    </div>
-                    <div style={{ fontSize:12, color:"#888", lineHeight:1.5 }}>{t.theme}</div>
-                  </div>
-                  <div style={{ fontSize:16, color:"#ddd", flexShrink:0 }}></div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
+                    </div> <div style={{ fontSize:12, color:"#888", lineHeight:1.5 }}>{t.theme}</div> </div> <div style={{ fontSize:16, color:"#ddd", flexShrink:0 }}></div> </div> ))}
+            </div> </div> )}
 
         {isLI && tab==="li_drafts" && (
-          <div style={{ padding:20, overflowY:"auto", flex:1 }}>
-            {drafts.length===0
-              ? <div className="card" style={{ border:"2px dashed #e8e8e8", textAlign:"center", padding:55, color:"#ccc", maxWidth:600 }}><div style={{ fontSize:28, marginBottom:10 }}>°</div><div style={{ fontSize:14, fontWeight:600, color:"#bbb" }}>No Approved Drafts Yet</div><div style={{ fontSize:12, marginTop:4 }}>Generate and approve posts  they appear here</div></div>
-              : <div style={{ maxWidth:700 }}>{drafts.map((d,i)=>(
-                  <div key={i} className="pp" style={{ marginBottom:14 }}>
-                    <div style={{ padding:"12px 16px", borderBottom:`1px solid ${C.border}`, background:"#f8f9fa", display:"flex", alignItems:"center", gap:10 }}>
-                      <div style={{ width:28, height:28, background:C.green, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:11 }}>CP</div>
-                      <div style={{ flex:1 }}><div style={{ fontSize:12, fontWeight:600 }}>{d.topic}</div><div style={{ fontSize:10, color:"#aaa" }}>Approved · {d.date}</div></div>
-                      <button className="cpb" onClick={() => navigator.clipboard.writeText(d.postText+"\n\n"+d.hashtags?.join(" "))}>Copy </button>
-                      <span style={{ background:"#f0f7f3", color:C.green, border:`1px solid #c8e6cc`, borderRadius:4, padding:"2px 8px", fontSize:10, fontWeight:700 }}> Approved</span>
-                    </div>
-                    <div style={{ padding:"14px 16px", fontSize:13, lineHeight:1.75, whiteSpace:"pre-wrap", maxHeight:180, overflowY:"auto" }}>{d.postText}</div>
-                    {d.hashtags?.length>0&&<div style={{ padding:"8px 16px", borderTop:`1px solid #f5f5f5`, background:"#fafafa" }}>{d.hashtags.map((h,hi)=><span key={hi} className="hp">{h}</span>)}</div>}
-                    {d.graphic&&<div style={{ padding:"10px 16px", borderTop:`1px solid #f5f5f5`, fontSize:11, color:"#aaa", fontStyle:"italic" }}>° {d.graphic}</div>}
-                  </div>
-                ))}</div>
-            }
-          </div>
-        )}
+          <div style={{ padding:20, overflowY:"auto", flex:1 }}> {drafts.length===0
+              ? <div className="card" style={{ border:"2px dashed #e8e8e8", textAlign:"center", padding:55, color:"#ccc", maxWidth:600 }}><div style={{ fontSize:28, marginBottom:10 }}></div><div style={{ fontSize:14, fontWeight:600, color:"#bbb" }}>No Approved Drafts Yet</div><div style={{ fontSize:12, marginTop:4 }}>Generate and approve posts  they appear here</div></div> : <div style={{ maxWidth:700 }}>{drafts.map((d,i)=>(
+                  <div key={i} className="pp" style={{ marginBottom:14 }}> <div style={{ padding:"12px 16px", borderBottom:`1px solid ${C.border}`, background:"#f8f9fa", display:"flex", alignItems:"center", gap:10 }}> <div style={{ width:28, height:28, background:C.green, borderRadius:"50%", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontWeight:700, fontSize:11 }}>CP</div> <div style={{ flex:1 }}><div style={{ fontSize:12, fontWeight:600 }}>{d.topic}</div><div style={{ fontSize:10, color:"#aaa" }}>Approved · {d.date}</div></div> <button className="cpb" onClick={() => navigator.clipboard.writeText(d.postText+"\n\n"+d.hashtags?.join(" "))}>Copy </button> <span style={{ background:"#f0f7f3", color:C.green, border:`1px solid #c8e6cc`, borderRadius:4, padding:"2px 8px", fontSize:10, fontWeight:700 }}> Approved</span> </div> <div style={{ padding:"14px 16px", fontSize:13, lineHeight:1.75, whiteSpace:"pre-wrap", maxHeight:180, overflowY:"auto" }}>{d.postText}</div> {d.hashtags?.length>0&&<div style={{ padding:"8px 16px", borderTop:`1px solid #f5f5f5`, background:"#fafafa" }}>{d.hashtags.map((h,hi)=><span key={hi} className="hp">{h}</span>)}</div>}
+                    {d.graphic&&<div style={{ padding:"10px 16px", borderTop:`1px solid #f5f5f5`, fontSize:11, color:"#aaa", fontStyle:"italic" }}> {d.graphic}</div>}
+                  </div> ))}</div> }
+          </div> )}
 
-      </div>
-    </div>
-  );
+      </div> </div> );
 }
