@@ -39,6 +39,67 @@ const W = 13.33, H = 7.5;
 // Morgan calls claude-sonnet-4 with full Catskill context to
 // generate all slide content — no static templates
 // ================================================================
+
+// ================================================================
+// APPENDIX SLIDE LIBRARY
+// Source: Catskill Partners Appendix Slides Q1 2026
+// SharePoint: https://catskillpartners-my.sharepoint.com/:p:/p/brian_steel/IQBza9Nv1AWISYFEbbhLfy_zAcC6Hd1op8G6-QTVmY8t0IE
+//
+// 18 Appendix Slides (always available for inclusion in any deck):
+//  A1  — Cover: APPENDIX SLIDES
+//  A2  — Independent Sponsor Legal Structure (org chart)
+//  A3  — Independent Sponsor Model Economics Overview
+//  A4  — Fund I Model Economics Overview
+//  A5  — Team Evolution & Roadmap
+//  A6  — Active Pipeline Summary Q1 2026
+//  A7  — Deal Flow Analytics & Funnel Detail
+//  A8  — Data Center Infrastructure Thesis (deep dive)
+//  A9  — Succession Wave: Market Data & Sources
+//  A10 — LMM Industrial Sector Focus & Sub-Segments
+//  A11 — Target Market: Advanced Manufacturing
+//  A12 — Target Market: Engineered Materials
+//  A13 — Target Market: Precision Components
+//  A14 — Proprietary Sourcing Database Detail (1,700+ owners)
+//  A15 — Brian Steel — Biography
+//  A16 — Mike Fuller — Biography
+//  A17 — Ars Bellica Advisors — Operations Partner
+//  A18 — Important Disclaimer / Legal Notice
+// ================================================================
+
+const APPENDIX_SLIDES = {
+  A1:  { title: 'APPENDIX SLIDES', type: 'appendix_cover' },
+  A2:  { title: 'Independent Sponsor Legal Structure', type: 'appendix_structure', audience: ['lp','ib','family_office'] },
+  A3:  { title: 'Independent Sponsor Model Economics Overview', type: 'appendix_economics', audience: ['lp','family_office'] },
+  A4:  { title: 'Fund I Model Economics Overview', type: 'appendix_economics', audience: ['lp','family_office'] },
+  A5:  { title: 'Team Evolution & Roadmap', type: 'appendix_team', audience: ['lp','ib','family_office'] },
+  A6:  { title: 'Active Pipeline Summary Q1 2026', type: 'appendix_pipeline', audience: ['ib','lp'] },
+  A7:  { title: 'Deal Flow Analytics', type: 'appendix_dealflow', audience: ['ib','lp'] },
+  A8:  { title: 'Data Center Infrastructure Thesis', type: 'appendix_thesis', audience: ['lp','family_office','ib'] },
+  A9:  { title: 'Succession Wave: Market Data', type: 'appendix_market', audience: ['lp','ib','family_office'] },
+  A10: { title: 'LMM Industrial Sector Focus', type: 'appendix_sector', audience: ['lp','ib'] },
+  A11: { title: 'Target Market: Advanced Manufacturing', type: 'appendix_sector', audience: ['lp','ib'] },
+  A12: { title: 'Target Market: Engineered Materials', type: 'appendix_sector', audience: ['lp','ib'] },
+  A13: { title: 'Target Market: Precision Components', type: 'appendix_sector', audience: ['lp','ib'] },
+  A14: { title: 'Proprietary Sourcing Database', type: 'appendix_sourcing', audience: ['lp','ib','family_office'] },
+  A15: { title: 'Brian Steel — Biography', type: 'appendix_bio', audience: ['lp','family_office'] },
+  A16: { title: 'Mike Fuller — Biography', type: 'appendix_bio', audience: ['lp','family_office'] },
+  A17: { title: 'Ars Bellica Advisors — Operations Partner', type: 'appendix_bio', audience: ['lp','ib'] },
+  A18: { title: 'Important Disclaimer', type: 'appendix_disclaimer', audience: ['lp','ib','family_office'] },
+};
+
+// Audience-appropriate appendix slide selector
+function getAppendixSlides(audience, includeAll) {
+  const aud = (audience || '').toLowerCase();
+  const isLP = aud.includes('lp') || aud.includes('limited') || aud.includes('allocat');
+  const isIB = aud.includes('bank') || aud.includes('broker') || aud.includes('intermediar');
+  const isFO = aud.includes('family') || aud.includes('office') || aud.includes('endow');
+  const audKey = isLP ? 'lp' : isIB ? 'ib' : isFO ? 'family_office' : 'lp';
+
+  return Object.entries(APPENDIX_SLIDES)
+    .filter(([_, sl]) => includeAll || sl.audience.includes(audKey))
+    .map(([id, sl]) => ({ ...sl, id }));
+}
+
 async function generateContent(topic, audience, brief, tone, apiKey) {
   const sys = `You are Morgan Cole, VP of Marketing at Catskill Partners LP.
 
@@ -74,8 +135,22 @@ Schema:
   ]
 }
 
+APPENDIX SLIDES AVAILABLE:
+
+APPENDIX DECK (SharePoint) — 18 additional slides available:
+Always reference appendix slides when requested or when building full LP-grade presentations.
+Available appendix topics: IS Legal Structure, IS Model Economics, Fund I Economics,
+Team Evolution & Roadmap, Active Pipeline Q1 2026, Deal Flow Analytics,
+Data Center Thesis (deep dive), Succession Wave data, Sector focus slides (Adv Mfg / Eng Materials / Precision),
+Proprietary database (1,700+ owners), Bio pages (Brian Steel, Mike Fuller, Ars Bellica), Disclaimer.
+
+When generating appendix slides add type: "appendix_*" and the system will use appendix styling.
+For LP/Family Office/IB audiences include relevant appendix: fund structure, team bios, economics detail.
+For IB add: pipeline summary, deal flow analytics, sector focus.
+Appendix slides always appear after main deck content, before closing.
+
 RULES:
-- 10-14 slides total
+- 10-16 slides total (up to 18 with appendix)
 - Max 4 bullets per slide — specific, data-backed, no vague language
 - Use real numbers: 70%+, $250B+, 25-30% IRR, $2-20M EBITDA, etc.
 - Operator voice: direct, credible, institutional
@@ -246,6 +321,216 @@ function buildClosing(pptx, sl) {
   s.addText('CLARITY. CRAFT. CAPITAL.',{x:0.6,y:H-0.55,w:W-1.2,h:0.32,fontSize:10,color:B.accent,fontFace:B.font,bold:true,align:'center',charSpacing:4});
 }
 
+
+// ── APPENDIX SLIDE BUILDERS ───────────────────────────────────────
+// Matches Catskill Partners Appendix Slides Q1 2026 design language
+
+function buildAppendixCover(pptx) {
+  const s = pptx.addSlide();
+  // Same dark mountain photo feel as real appendix cover
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.dark},line:{color:B.dark}});
+  s.addShape('rect',{x:0,y:H-1.1,w:W,h:1.1,fill:{color:B.primary},line:{color:B.primary}});
+  s.addShape('rect',{x:0,y:H-1.15,w:W,h:0.05,fill:{color:B.accent},line:{color:B.accent}});
+  s.addText('APPENDIX SLIDES',{x:0.6,y:2.8,w:W-1.2,h:1.2,fontSize:42,color:B.white,fontFace:B.font,bold:true,align:'center',valign:'middle',charSpacing:3});
+  s.addText('Catskill Partners 2026 - CONFIDENTIAL',{x:W-5.5,y:H-0.85,w:5.2,h:0.35,fontSize:9,color:B.accent,fontFace:B.font,align:'right'});
+}
+
+function buildAppendixStructure(pptx, sl, n) {
+  // IS Legal Structure — org chart style
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  titleBlock(s, sl.title||'Independent Sponsor Legal Structure');
+  // Three-box structure: Management Co -> SPV -> Portfolio Co
+  const boxes = [
+    {label:'Catskill Partners, LLC',sub:'Management Company - Delaware LLC',x:0.6,color:B.primary},
+    {label:'Deal-Specific SPV LLC',sub:'Special Purpose Vehicle per transaction',x:4.9,color:B.forest},
+    {label:'Portfolio Company',sub:'Target Acquisition',x:9.2,color:'2D6A4F'},
+  ];
+  boxes.forEach((b,i) => {
+    s.addShape('rect',{x:b.x,y:2.0,w:3.6,h:1.2,fill:{color:b.color},line:{color:b.color},rectRadius:0.08});
+    s.addText(b.label,{x:b.x+0.1,y:2.05,w:3.4,h:0.55,fontSize:12,color:B.white,fontFace:B.font,bold:true,align:'center',valign:'middle'});
+    s.addText(b.sub,{x:b.x+0.1,y:2.6,w:3.4,h:0.5,fontSize:9,color:'C8E6C9',fontFace:B.font,align:'center',valign:'top',breakLine:true});
+    if(i<2) s.addShape('rect',{x:b.x+3.6,y:2.55,w:1.3,h:0.04,fill:{color:B.accent},line:{color:B.accent}});
+  });
+  // LP / Co-investor row
+  s.addShape('rect',{x:4.9,y:3.6,w:3.6,h:0.9,fill:{color:B.light},line:{color:B.accent,pt:1},rectRadius:0.06});
+  s.addText('LP / Co-Investors',{x:4.9,y:3.65,w:3.6,h:0.45,fontSize:11,color:B.primary,fontFace:B.font,bold:true,align:'center'});
+  s.addText('Deal-by-deal participation rights',{x:4.9,y:4.05,w:3.6,h:0.35,fontSize:9,color:B.mgray,fontFace:B.font,align:'center'});
+  s.addShape('rect',{x:6.52,y:3.2,w:0.04,h:0.4,fill:{color:B.accent},line:{color:B.accent}});
+  footer(s,n);
+}
+
+function buildAppendixEconomics(pptx, sl, n) {
+  // IS or Fund I economics — detailed text table
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  titleBlock(s, sl.title||'Fund Economics Overview');
+  const isFund = (sl.title||'').toLowerCase().includes('fund');
+  const rows = isFund ? [
+    ['Target Fund Size','$250M'],
+    ['Investment Period','5 years (two 1-year extensions at GP discretion)'],
+    ['Fund Life','10 years (two 1-year extensions, LP approval required)'],
+    ['Reserve Allocation','~25% for add-on acquisitions (flexible)'],
+    ['Target IRR','25-30% gross / 20-25% net'],
+    ['Target MOIC','3.0-4.0x gross'],
+    ['Management Fee','2% on committed capital (investment period) / 2% on invested capital (post)'],
+    ['Carried Interest','20% over 8% preferred return (European-style waterfall)'],
+    ['GP Commitment','2% minimum co-investment in each deal'],
+  ] : [
+    ['Deal Economics','Deal-by-deal SPV structure'],
+    ['Preferred Return to LPs','8%'],
+    ['Management Fee','Paid by portfolio company, not LP'],
+    ['Fee Term','During hold period (~4-6 years)'],
+    ['Carried Interest','20% above 8% hurdle'],
+    ['GP Co-Invest','Minimum 2% per transaction'],
+    ['Typical Hold','4-6 years with add-on acceleration'],
+  ];
+  rows.forEach((row,i) => {
+    const y = 1.5 + (i * 0.52);
+    const bg = i%2===0 ? B.light : B.white;
+    s.addShape('rect',{x:0.4,y:y,w:W-0.8,h:0.48,fill:{color:bg},line:{color:'E8E8E4'}});
+    s.addText(row[0],{x:0.6,y:y+0.05,w:4.0,h:0.38,fontSize:11,color:B.primary,fontFace:B.font,bold:true,align:'left',valign:'middle'});
+    s.addText(row[1],{x:4.8,y:y+0.05,w:W-5.2,h:0.38,fontSize:11,color:B.dgray,fontFace:B.font,align:'left',valign:'middle'});
+  });
+  footer(s,n);
+}
+
+function buildAppendixTeam(pptx, sl, n) {
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  titleBlock(s, 'Team Evolution & Roadmap');
+  // Timeline stages
+  const stages = [
+    {phase:'NOW',label:'Independent Sponsor',detail:'Current structure: deal-by-deal co-investment. Brian Steel + Mike Fuller + Analyst support.',x:0.4},
+    {phase:'MONTH 18-24',label:'Fund I Close',detail:'$250M target. Add Principal + additional Analyst. Full team of 5.',x:3.6},
+    {phase:'YEAR 3-5',label:'Fund I Deployment',detail:'6-8 platform investments. Operations partner (Ars Bellica) engaged per deal.',x:6.8},
+    {phase:'YEAR 8-10',label:'Fund II',detail:'$500M+ target. Institutional LP base. Full portfolio team.',x:10.0},
+  ];
+  stages.forEach((st,i) => {
+    s.addShape('rect',{x:st.x,y:1.6,w:3.0,h:0.45,fill:{color:B.primary},line:{color:B.primary},rectRadius:0.06});
+    s.addText(st.phase,{x:st.x,y:1.65,w:3.0,h:0.35,fontSize:10,color:B.accent,fontFace:B.font,bold:true,align:'center',charSpacing:1});
+    if(i<3) s.addShape('rect',{x:st.x+3.0,y:1.8,w:0.6,h:0.04,fill:{color:B.accent},line:{color:B.accent}});
+    s.addShape('rect',{x:st.x,y:2.2,w:3.0,h:2.2,fill:{color:B.light},line:{color:B.accent,pt:1},rectRadius:0.06});
+    s.addText(st.label,{x:st.x+0.1,y:2.3,w:2.8,h:0.45,fontSize:12,color:B.primary,fontFace:B.font,bold:true,align:'center'});
+    s.addText(st.detail,{x:st.x+0.1,y:2.85,w:2.8,h:1.4,fontSize:10,color:B.mgray,fontFace:B.font,align:'left',valign:'top',breakLine:true});
+  });
+  footer(s,n);
+}
+
+function buildAppendixPipeline(pptx, sl, n) {
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  titleBlock(s, 'Active Pipeline Summary Q1 2026');
+  // Table header
+  const cols = ['Company / Segment','Revenue','EBITDA','EV Range','Stage','Source'];
+  const cw = [3.2, 1.4, 1.4, 1.6, 1.6, 1.6];
+  let cx = 0.35;
+  cols.forEach((col,i) => {
+    s.addShape('rect',{x:cx,y:1.45,w:cw[i]-0.05,h:0.4,fill:{color:B.primary},line:{color:B.primary}});
+    s.addText(col,{x:cx+0.05,y:1.45,w:cw[i]-0.1,h:0.4,fontSize:9,color:B.white,fontFace:B.font,bold:true,align:'center',valign:'middle'});
+    cx += cw[i];
+  });
+  // Placeholder rows (Claude will fill with real data from Claude system context)
+  const rows = [
+    ['Project Anchor (Lake Shore Electric)','~$50M','~$13M','$65-85M','Platform - Active','Proprietary'],
+    ['Project Star (Five Star Electric)','~$18M','~$3.5M','$20-28M','Add-On - LOI','Referral'],
+    ['Target A — Precision Components','$12-18M','$2.5-4M','$18-30M','Initial Diligence','Direct Outreach'],
+    ['Target B — Industrial Power','$25-40M','$5-8M','$35-55M','NDA Signed','IB Referral'],
+    ['Target C — Advanced Mfg','$30-50M','$6-10M','$40-65M','Screening','Database'],
+  ];
+  rows.forEach((row,i) => {
+    const y = 1.9 + (i*0.55);
+    const bg = i%2===0 ? B.white : B.light;
+    cx = 0.35;
+    row.forEach((cell,j) => {
+      s.addShape('rect',{x:cx,y,w:cw[j]-0.05,h:0.5,fill:{color:bg},line:{color:'E8E8E4'}});
+      const isActive = cell.includes('Active') || cell.includes('LOI');
+      s.addText(cell,{x:cx+0.05,y:y+0.03,w:cw[j]-0.1,h:0.44,fontSize:9,color:isActive?B.primary:B.dgray,fontFace:B.font,bold:isActive,align:j===0?'left':'center',valign:'middle'});
+      cx += cw[j];
+    });
+  });
+  s.addText('Source: Catskill Partners proprietary deal flow database. Pipeline reflects active conversations as of Q1 2026.',{x:0.4,y:H-0.65,w:W-0.8,h:0.25,fontSize:7.5,color:B.lgray,fontFace:B.font,italic:true,align:'left'});
+  footer(s,n);
+}
+
+function buildAppendixBio(pptx, sl, n) {
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  titleBlock(s, sl.title||'Team Biography');
+  const isBrian = (sl.title||'').includes('Brian') || (sl.content||'').includes('Brian');
+  const isMike  = (sl.title||'').includes('Mike') || (sl.title||'').includes('Fuller');
+  const isArs   = (sl.title||'').includes('Ars') || (sl.title||'').includes('Bellica');
+  let name='', role='', background=[], current=[];
+  if(isBrian) {
+    name='Brian Steel'; role='Chief Executive Officer / Co-Founder';
+    background=['20+ years in industrial manufacturing operations','CEO experience at Tenere Products (precision metal components)','Operational leadership at Cadrex Manufacturing (complex machined parts)','Deep expertise in data center supply chain and ICT infrastructure'];
+    current=['Leads deal origination, operator relationships, and portfolio operations','Manages Catskill Partners day-to-day and Fund I fundraising','Board observer/director on all platform investments'];
+  } else if(isMike) {
+    name='Mike Fuller'; role='Principal / Co-Founder';
+    background=['25+ years ICT/Data Center infrastructure experience','PE investor background with LMM industrial focus','Extensive LP and intermediary network','Data center and edge computing market expertise'];
+    current=['Leads financial underwriting and LP relations','Manages investment banking and co-investor relationships','Oversees fund strategy and portfolio construction'];
+  } else {
+    name='Ars Bellica Advisors'; role='Operations Partner';
+    background=['Specialized operational advisory firm for industrial PE','Lean manufacturing, supply chain optimization','Post-acquisition integration and value creation execution','Full-potential EBITDA analysis and implementation'];
+    current=['Engaged per portfolio company transaction','Delivers 300bps+ EBITDA improvement programs','Works alongside management teams on operational transformation'];
+  }
+  s.addShape('rect',{x:0.4,y:1.4,w:3.2,h:H-2.2,fill:{color:B.primary},line:{color:B.primary},rectRadius:0.08});
+  s.addText(name,{x:0.5,y:1.55,w:3.0,h:0.55,fontSize:15,color:B.white,fontFace:B.font,bold:true,align:'center'});
+  s.addText(role,{x:0.5,y:2.15,w:3.0,h:0.55,fontSize:10,color:B.light,fontFace:B.font,align:'center',breakLine:true});
+  s.addShape('rect',{x:0.8,y:2.8,w:2.0,h:0.03,fill:{color:B.accent},line:{color:B.accent}});
+  s.addText('info@catskillpartners.com',{x:0.5,y:H-1.6,w:3.0,h:0.3,fontSize:9,color:B.light,fontFace:B.font,align:'center'});
+  // Right side
+  s.addText('BACKGROUND',{x:4.0,y:1.5,w:W-4.4,h:0.35,fontSize:9,color:B.primary,fontFace:B.font,bold:true,charSpacing:2});
+  s.addShape('rect',{x:4.0,y:1.88,w:W-4.4,h:0.03,fill:{color:B.accent},line:{color:B.accent}});
+  background.forEach((b,i) => {
+    s.addShape('rect',{x:4.05,y:2.05+(i*0.5)+0.18,w:0.1,h:0.1,fill:{color:B.accent},line:{color:B.accent},rectRadius:0.05});
+    s.addText(b,{x:4.25,y:2.05+(i*0.5),w:W-4.65,h:0.45,fontSize:11,color:B.dgray,fontFace:B.font,align:'left',valign:'middle',breakLine:true});
+  });
+  const rightOffset = 2.05+(background.length*0.5)+0.3;
+  s.addText('CURRENT RESPONSIBILITIES',{x:4.0,y:rightOffset,w:W-4.4,h:0.35,fontSize:9,color:B.primary,fontFace:B.font,bold:true,charSpacing:2});
+  s.addShape('rect',{x:4.0,y:rightOffset+0.38,w:W-4.4,h:0.03,fill:{color:B.accent},line:{color:B.accent}});
+  current.forEach((c,i) => {
+    s.addShape('rect',{x:4.05,y:rightOffset+0.55+(i*0.48)+0.18,w:0.1,h:0.1,fill:{color:B.forest},line:{color:B.forest},rectRadius:0.05});
+    s.addText(c,{x:4.25,y:rightOffset+0.55+(i*0.48),w:W-4.65,h:0.44,fontSize:11,color:B.dgray,fontFace:B.font,align:'left',valign:'middle',breakLine:true});
+  });
+  footer(s,n);
+}
+
+function buildAppendixDisclaimer(pptx) {
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  titleBlock(s,'CONFIDENTIAL - Important Disclaimer');
+  const text = 'This presentation is confidential and has been prepared by Catskill Partners LP solely for informational purposes. This presentation does not constitute an offer to sell or a solicitation of an offer to buy any security or interest. Any offering of interests in any fund managed by Catskill Partners will be made pursuant to formal offering documents, which will contain important information about investment objectives, terms, risk factors, and conflicts of interest. This presentation is intended only for qualified investors who meet applicable investor suitability requirements.
+
+This information is preliminary and incomplete. Past performance of any investments discussed herein is not necessarily indicative of future results. All projections, estimates, and returns are forward-looking statements that involve significant risks and uncertainties. Actual results may differ materially from those projected.
+
+Recipients of this presentation agree to maintain the confidentiality of all information contained herein and not to reproduce or distribute this presentation without prior written consent from Catskill Partners LP.';
+  s.addText(text,{x:0.5,y:1.5,w:W-1.0,h:H-2.5,fontSize:10,color:B.mgray,fontFace:B.font,align:'left',valign:'top',breakLine:true,lineSpacingMultiple:1.3});
+  s.addText('Catskill Partners LP | info@catskillpartners.com | www.catskillpartners.com',{x:0.5,y:H-0.65,w:W-1.0,h:0.28,fontSize:8,color:B.primary,fontFace:B.font,align:'center'});
+}
+
+function buildAppendixGeneric(pptx, sl, n) {
+  // Generic appendix content slide with green header bar
+  const s = pptx.addSlide();
+  s.addShape('rect',{x:0,y:0,w:W,h:H,fill:{color:B.off},line:{color:B.off}});
+  // Appendix indicator strip
+  s.addShape('rect',{x:0,y:0,w:0.25,h:H,fill:{color:B.primary},line:{color:B.primary}});
+  s.addShape('rect',{x:0.25,y:0,w:W-0.25,h:1.3,fill:{color:B.white},line:{color:B.white}});
+  s.addText('APPENDIX',{x:0.3,y:0.15,w:1.8,h:0.35,fontSize:7.5,color:B.accent,fontFace:B.font,bold:true,charSpacing:2,align:'left'});
+  s.addText((sl.title||'').toUpperCase(),{x:0.3,y:0.25,w:W-0.6,h:0.75,fontSize:19,color:B.primary,fontFace:B.font,bold:true,align:'left',valign:'middle'});
+  s.addShape('rect',{x:0.3,y:1.1,w:W-0.5,h:0.03,fill:{color:B.accent},line:{color:B.accent}});
+  (sl.bullets||[]).slice(0,5).forEach((b,i) => {
+    const y=1.45+(i*0.78);
+    s.addShape('rect',{x:0.38,y:y+0.22,w:0.12,h:0.12,fill:{color:B.accent},line:{color:B.accent},rectRadius:0.06});
+    s.addText(b,{x:0.62,y,w:W-1.0,h:0.65,fontSize:13,color:B.mgray,fontFace:B.font,align:'left',valign:'middle',breakLine:true});
+  });
+  if(sl.callout) {
+    s.addShape('rect',{x:W-4.3,y:1.45,w:3.9,h:H-2.2,fill:{color:B.light},line:{color:B.accent,pt:1.5},rectRadius:0.08});
+    s.addText(sl.callout,{x:W-4.2,y:2.1,w:3.7,h:H-3.8,fontSize:16,color:B.primary,fontFace:B.font,bold:true,align:'center',valign:'middle',breakLine:true});
+  }
+  footer(s,n);
+}
+
 function build(deck) {
   const pptx = new PptxGenJS();
   pptx.defineLayout({name:'WIDESCREEN',width:W,height:H});
@@ -257,7 +542,15 @@ function build(deck) {
     else if(sl.type==='data')    { buildData(pptx,sl,n++); }
     else if(sl.type==='twocol')  { buildTwoCol(pptx,sl,n++); }
     else if(sl.type==='closing') { buildClosing(pptx,sl); }
-    else                         { buildContent(pptx,sl,n++); }
+    else if(sl.type==='appendix_cover')     { buildAppendixCover(pptx); }
+    else if(sl.type==='appendix_structure')  { buildAppendixStructure(pptx,sl,n++); }
+    else if(sl.type==='appendix_economics')  { buildAppendixEconomics(pptx,sl,n++); }
+    else if(sl.type==='appendix_team')       { buildAppendixTeam(pptx,sl,n++); }
+    else if(sl.type==='appendix_pipeline')   { buildAppendixPipeline(pptx,sl,n++); }
+    else if(sl.type==='appendix_bio')        { buildAppendixBio(pptx,sl,n++); }
+    else if(sl.type==='appendix_disclaimer') { buildAppendixDisclaimer(pptx); }
+    else if(sl.type && sl.type.startsWith('appendix_')) { buildAppendixGeneric(pptx,sl,n++); }
+    else                                     { buildContent(pptx,sl,n++); }
   }
   return pptx;
 }
@@ -271,7 +564,10 @@ export default async function handler(req, res) {
   const apiKey = process.env.ANTHROPIC_API_KEY;
   if(!apiKey) return res.status(500).json({error:'API key not configured'});
   try {
-    const {topic,audience,brief,tone} = req.body;
+    const {topic,audience,brief,tone,includeAppendix} = req.body;
+    // includeAppendix: 'none' | 'selected' | 'full'
+    // Pass appendix preference to Claude
+    const appendixMode = includeAppendix || 'selected';
     const deck = await generateContent(
       topic||'Catskill Partners Overview',
       audience||'Investment Bankers and Capital Allocators',
