@@ -3,22 +3,11 @@
   "outputDirectory": "dist",
   "framework": "vite",
   "functions": {
-    "api/*.js": {
-      "maxDuration": 60
-    },
-    "api/generate_pptx.py": {
-      "maxDuration": 60,
-      "runtime": "python3.9"
-    }
+    "api/*.js": { "maxDuration": 60 },
+    "api/generate_pptx.py": { "maxDuration": 60, "runtime": "python3.9" }
   },
   "rewrites": [
-    {
-      "source": "/api/(.*)",
-      "destination": "/api/$1"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/index.html"
-    }
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
   ]
 }
