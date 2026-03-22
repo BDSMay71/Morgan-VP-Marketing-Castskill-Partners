@@ -565,7 +565,15 @@ export default function App() {
   const fileRef = useRef(null);
   const isLI = mode === "linkedin";
 
-  useEffect(() => { endRef.current?.scrollIntoView({ behavior:"smooth" }); }, [msgs, loading]);
+  
+  // Force correct outputFormat when switching to Presentations tab
+  useEffect(() => {
+    if (activeTab === 'presentations') {
+      setOutputFormat('pptx');
+    }
+  }, [activeTab]);
+
+useEffect(() => { endRef.current?.scrollIntoView({ behavior:"smooth" }); }, [msgs, loading]);
 
   // Auto-download PPTX when agent output arrives in pptx mode
   useEffect(() => {
