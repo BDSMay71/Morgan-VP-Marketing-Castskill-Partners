@@ -31,7 +31,26 @@ Return ONLY valid JSON — no markdown:
 {"type":"twocol","title":"TITLE","left_heading":"...","left_bullets":["...x4"],"right_heading":"...","right_bullets":["...x4"]},
 {"type":"appendix_cover"},{"type":"appendix","title":"...","bullets":["...x4"]},
 {"type":"closing","title":"...","body":"..."}]}
-RULES: 12-16 slides | max 4 bullets | real data | operator voice | include appendix for audience`;
+RULES: 12-16 slides | max 4 bullets | real data | operator voice | include appendix for audience
+
+APPENDIX SLIDES — Catskill Partners Q1 2026 (18 slides, use when audience needs depth):
+A2=Legal Entity Structure: Catskill Partners LLC→SPV LLC→HoldCo→OpCo, Carry/Promote Vehicle, Co-Investors/LPs (Anchor LP, Family Offices, HNW), Blocker LLC for tax-exempt LPs.
+A3=IS Model Economics: 8% pref return to LPs; 80/20 LP/GP carry then 75/25 after 3x MOIC; 2% GP co-invest min; 2% TX fee on EV at close; 2-3 platforms/24mo; 4-6yr hold.
+A4=Fund I Economics: $250M target; 5yr investment period; 10yr fund life; ~25% add-on reserve; 2.0% mgmt fee on committed (invest period); 6-8 platforms; 25-30% gross IRR; 3-4x gross MOIC.
+A5=Team Evolution: TODAY Brian Steel+Mike Fuller+External Partners → MONTH 24 +Principal+Analyst+Controller → MONTHS 24-36 2 Partners+2 Principals+2 Associates+1 Analyst+2-3 OpPartners.
+A6=Active Pipeline: live deal table (must be refreshed before use).
+A7=Project Anchor: Industrial Power Solutions ~$50M rev, ~$13M EBITDA, ~26% margin, ~100+ employees.
+A8=Advanced Manufacturing: Target CMS/casters/lifts/mobility systems. Stats: $1B+ North American TAM, 8-12% CAGR through 2035, 5-10% top-5 mkt share.
+A9=Engineered Materials: Target custom precision gaskets/insulators for data centers. Stats: ~500 US manufacturers, 1500+ converters, 2x CAGR acceleration from Hyperscale through 2034.
+A10=Precision Components: Target high-capacity custom precision manifolds for cooling. Stats: 14.8% CAGR through 2030, 2000+ North American fabricators, 20% combined share top-10 CCP manufacturers.
+A12=Case Study A REALIZED EXIT: Precision manufacturing platform. ~30% IRR, >10x MOIC (sold July 2022). BS/MF strategic pivot implemented 2017.
+A13=Case Study B REALIZED EXIT: Engineered interconnect mfg. ~12% IRR, ~3x MOIC (sold 2017). Exited low-margin multimedia, pivoted to defense/industrial.
+A14=Case Study C UNREALIZED: Safety-critical global fasteners, multi-jurisdictional UK/US/China/Asia. Front-end diligence explicitly structured underwriting risks.
+A15=Case Study D Operating: Integrated 11 companies/23 locations in 18 months. 9 of 11 founders successfully transitioned.
+A16=Case Study E Operating: Greenfield Mexico $0→~$150M revenue across two ownership periods.
+A17=Case Study F Operating: Consolidated two platforms into single production site.
+A18=Bios: MIKE FULLER—20+ yrs ICT/Data Center, PE investor, LP/intermediary network. BRIAN STEEL—20+ yrs industrial ops, CEO Tenere Products (precision metal) + Cadrex Manufacturing (complex machined parts), data center supply chain expert.
+Use appendix slides for: LP/FO audiences (A3,A4,A5,A18), IB audiences (A6,A7,A8,A9,A10), case study credibility (A12-A17), legal/structure questions (A2).`;
   const res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',
     headers:{'Content-Type':'application/json','x-api-key':apiKey,'anthropic-version':'2023-06-01'},
     body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:5000,system:sys,
