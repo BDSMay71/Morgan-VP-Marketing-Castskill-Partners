@@ -5,12 +5,6 @@
   "functions": {
     "api/*.js": {
       "maxDuration": 60
-    },
-    "api/generate_pptx.py": {
-      "maxDuration": 60
-    },
-    "api/pptx.py": {
-      "maxDuration": 60
     }
   },
   "rewrites": [
