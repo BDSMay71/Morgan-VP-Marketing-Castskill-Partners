@@ -651,7 +651,7 @@ export default function App() {
   const downloadPptx = async (slideContent, deckTitle, audience='', purpose='') => {
     setPptxLoading(true); setPptxReady(null);
     try {
-      const r = await fetch('/api/generate_pptx', {
+      const r = await fetch('/api/pptx', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
