@@ -1,5 +1,5 @@
-// Catskill Partners Morgan Cole — Content & Research API
-// Supports: market research, articles, LinkedIn posts, web search
+// Morgan Cole — Content Generation API v3
+// Fixed: model field required, web_search tool, all task types
 
 export default async function handler(req, res) {
   res.setHeader('Access-Control-Allow-Origin', '*');
@@ -12,126 +12,104 @@ export default async function handler(req, res) {
   if (!apiKey) return res.status(500).json({ error: 'API key not configured' });
 
   const {
-    taskType = 'article',
-    topic = '',
-    audience = 'LP / Institutional Investor',
-    brief = '',
-    tone = 'operator',
-    outputFormat = 'article',
-    notes = '',
-    mode = 'content',
-    enableWebSearch = false,
+    taskType = 'article', topic = '', audience = 'LP / Institutional Investor',
+    brief = '', tone = 'operator', outputFormat = 'article',
+    notes = '', mode = 'content', enableWebSearch = false,
   } = req.body || {};
 
-  // ── System prompt ─────────────────────────────────────────────────────────
-  const SYSTEM = `You are Morgan Cole, VP of Marketing at Catskill Partners LP — an operator-first private equity firm acquiring lower-middle market industrial businesses ($25–150M EV, $2–20M EBITDA).
+  const SYSTEM = `You are Morgan Cole, VP of Marketing at Catskill Partners LP — an operator-first PE firm acquiring lower-middle market industrial businesses.
 
-FIRM FACTS (always accurate):
-- Brian Steel: CEO/operator, built Tenere Products $0→$350M, sold 2022 >10x MOIC. Also led Cadrex Manufacturing.
-- Mike Fuller: 20+ years ICT/Data Center PE. Deep LP network and sector expertise.
-- Fund I: $250M target | 6–8 platforms | $2–20M EBITDA | $25–150M EV | North America
-- Investment thesis: Advanced Manufacturing, Engineered Materials, Precision Components, ICT/Data Center supply chain
-- Market: 70%+ of LMM owners 55+ | $250B+ data center capex by 2030 | supply chain reshoring
-- Returns: 25–30% IRR target | 3–4x MOIC | 6yr hold | 8% preferred return | 80/20 LP/GP carry
-- Sourcing: 1,700+ owner database | 14 active opportunities March 2026 | proactive origination 18+ months
+FIRM FACTS:
+- Brian Steel: CEO/operator. Built Tenere Products $0→$350M revenue, sold 2022 >10x MOIC. Also led Cadrex Manufacturing.
+- Mike Fuller: 20+ years ICT/Data Center PE investing. Deep institutional LP network.
+- Fund I: $250M target | 6-8 platforms | $2-20M EBITDA | $25-150M EV | North America focus
+- Target sectors: Advanced Manufacturing, Engineered Materials, Precision Components, ICT/Data Center supply chain
+- Market thesis: 70%+ of LMM owners 55+ | $250B+ data center capex by 2030 | reshoring tailwinds
+- Returns target: 25-30% gross IRR | 3-4x MOIC | 6yr hold | 8% preferred return | 80/20 LP/GP carry
+- Sourcing edge: 1,700+ proprietary owner database | 14 active opportunities March 2026 | proactive origination
 - Tagline: CLARITY. CRAFT. CAPITAL. | We are operators first.
 
-VOICE: Direct, data-driven, operator-credentialed. Never generic PE speak. Specific numbers always.
-Always write in Morgan Cole's first-person voice as Catskill's VP of Marketing.`;
+Write in Morgan Cole's voice. Be specific. Use real Catskill data. No generic PE speak.`;
 
-  // ── Format instructions ────────────────────────────────────────────────────
-  const FORMAT_MAP = {
-    'article':   'Write a 700–900 word byline/article with headers. Data-driven. Catskill positioning throughout.',
-    'brief':     'Write a crisp 300–400 word executive brief. Structured with 3–4 sections. No fluff.',
-    'bullets':   'Write 12–18 slide-ready bullets grouped under 3–4 headers. Each bullet is one tight sentence with data.',
-    'report':    'Write a structured 800–1200 word report with: Executive Summary, Key Findings (3–5 sections with data), Catskill Positioning, Conclusion.',
-    'post':      'Write a LinkedIn post: 150–250 words, hook first sentence, 2–3 key insight paragraphs, strong close. No hashtag spam. Max 3 hashtags at end.',
-    'script':    'Write a 400–600 word talk track / spoken presentation script. Natural language, first-person, punchy.',
+  const FORMAT = {
+    article: 'Write a 700-900 word byline article with clear headers. Data-driven throughout. Embed Catskill positioning naturally.',
+    brief: 'Write a crisp 300-400 word executive brief with 3-4 labeled sections. Tight and scannable.',
+    bullets: 'Write 12-18 slide-ready bullets grouped under 3-4 headers. Each bullet = one sentence with a specific data point or insight.',
+    report: 'Write a full structured report 800-1200 words: Executive Summary → Key Findings (3-5 sections with data) → Catskill Positioning → Conclusion.',
+    post: 'Write a LinkedIn post 150-250 words. Strong hook opening line. 2-3 insight paragraphs. Punchy close with clear POV. Max 3 relevant hashtags at end.',
+    script: 'Write a 400-600 word spoken talk track. Natural first-person language. Operator-credentialed. Punchy delivery.',
   };
 
-  const TONE_MAP = {
-    'operator':      'Direct, factory-floor credibility. Operator who has actually run companies. Numbers-first.',
-    'institutional': 'Rigorous, data-forward, institutional-grade. Precise language expected by sophisticated LPs.',
-    'executive':     'Measured, boardroom gravitas. Confident without being flashy.',
-    'editorial':     'Thought leadership tone. Provocative framing, strong POV, compelling narrative.',
-    'concise':       'Tight and scannable. Short sentences. Dense data. Every word earns its place.',
+  const TONE = {
+    operator: 'Direct, factory-floor credibility. Numbers-first. Operator who has actually run companies. No buzzwords.',
+    institutional: 'Rigorous, data-forward, institutional-grade precision. Language expected by sophisticated LPs.',
+    executive: 'Measured boardroom gravitas. Confident without being flashy.',
+    editorial: 'Thought leadership. Provocative framing. Strong POV. Compelling narrative arc.',
+    concise: 'Tight and scannable. Short sentences. Dense data. Every word earns its place.',
   };
 
-  // ── Task-specific instructions ─────────────────────────────────────────────
-  const TASK_MAP = {
-    weekly_report:    'Generate a weekly LMM industrial M&A market report. Include: deal flow observations, sector trends, macro signals, data center demand updates, succession wave indicators. Structure as a proper report.',
-    sector_analysis:  'Generate a deep sector analysis. Include: TAM, CAGR, key players, supply/demand dynamics, Catskill positioning and competitive angle, specific companies/data.',
-    competitive_intel:'Generate competitive intelligence on PE activity in LMM industrials. Cover deal multiples, active buyers, where Catskill differentiates.',
-    end_market_brief: 'Generate an end-market demand brief. Use current data. Include specific capex figures, growth rates, supply chain dynamics.',
-    target_profile:   'Generate a target company profile. Acquisition thesis, value creation angles, sector fit, deal structure considerations.',
-    lp_letter:        'Generate an LP communication letter. Professional, confident tone. Cover fund progress, market conditions, forward outlook.',
-    deal_memo:        'Generate an investment memorandum. Thesis, target overview, value creation plan, financial considerations, risks and mitigants.',
-    article:          'Generate a thought leadership article or byline piece.',
-    thought_leadership: 'Generate a LinkedIn thought leadership post from Brian Steel or Morgan Cole perspective.',
-    market_insight:   'Generate a LinkedIn market insight post. Data-led, specific, Catskill angle.',
-    industry_commentary: 'Generate an industry commentary post. Timely, opinionated, backed by data.',
-    firm_news:        'Generate a LinkedIn firm news/announcement post.',
-    deal_announcement:'Generate a LinkedIn deal announcement post. Professional, forward-looking, operator narrative.',
+  const TASK_EXTRA = {
+    weekly_report: 'Structure the weekly report with these sections: DEAL FLOW THIS WEEK | SECTOR SIGNALS | MACRO UPDATE | DATA CENTER DEMAND TRACKER | SUCCESSION WAVE INDICATORS | CATSKILL PIPELINE NOTE. Use current market conditions and data.',
+    sector_analysis: 'Include: TAM size, CAGR projections, key players, supply/demand dynamics, Catskill competitive angle and specific fit.',
+    competitive_intel: 'Cover: active PE buyers in LMM industrials, current deal multiples, who is winning and why, where Catskill differentiates.',
+    end_market_brief: 'Include specific capex figures, growth rates, supply chain dynamics. Be quantitative throughout.',
+    target_profile: 'Include acquisition thesis, value creation angles, sector fit, deal structure considerations.',
+    macro_brief: 'Cover macro factors relevant to LMM industrial M&A: rates, reshoring, supply chains, buyer/seller dynamics.',
+    lp_letter: 'Professional LP communication. Cover: fund progress, current market conditions, active pipeline, forward outlook.',
+    deal_memo: 'Investment memo structure: Thesis → Target Overview → Market Context → Value Creation Plan → Financial Considerations → Risks & Mitigants.',
+    press_release: 'Standard press release format: headline, dateline, lead paragraph, quotes, company description, boilerplate.',
+    article: 'Thought leadership byline piece. Strong narrative. Data-backed. Catskill POV throughout.',
+    thought_leadership: 'LinkedIn thought leadership post. Strong operator POV. Brian Steel or Morgan Cole voice.',
+    market_insight: 'LinkedIn market insight post. Data-led. Specific numbers. Catskill positioning angle.',
+    industry_commentary: 'LinkedIn industry commentary. Timely, opinionated, backed by specific data points.',
+    firm_news: 'LinkedIn firm announcement. Professional, confident, forward-looking.',
+    deal_announcement: 'LinkedIn deal announcement. Operator narrative. Value creation forward-looking angle.',
   };
 
-  const taskInstr = TASK_MAP[taskType] || 'Generate high-quality content as requested.';
-  const formatInstr = FORMAT_MAP[outputFormat] || FORMAT_MAP['article'];
-  const toneInstr = TONE_MAP[tone] || TONE_MAP['operator'];
+  const taskExtra = TASK_EXTRA[taskType] || '';
+  const formatInstr = FORMAT[outputFormat] || FORMAT.article;
+  const toneInstr = TONE[tone] || TONE.operator;
 
-  const userPrompt = `TASK: ${taskInstr}
+  const userPrompt = `TASK: ${taskType}${taskExtra ? '\nGUIDANCE: ' + taskExtra : ''}
 
 TOPIC: ${topic || brief}
 AUDIENCE: ${audience}
 BRIEF: ${brief}
-${notes ? 'ADDITIONAL NOTES: ' + notes : ''}
+${notes ? 'NOTES: ' + notes : ''}
 
 FORMAT: ${formatInstr}
 TONE: ${toneInstr}
 
-Generate the content now. Be specific. Use real data. Embed Catskill's story naturally.`;
+Generate now. Be specific. Use real Catskill facts and data.`;
 
-  // ── Web search tool ────────────────────────────────────────────────────────
-  const tools = enableWebSearch ? [{
-    type: 'web_search_20250305',
-    name: 'web_search',
-  }] : undefined;
-
-  // ── Call Anthropic ─────────────────────────────────────────────────────────
   try {
     const body = {
       model: 'claude-sonnet-4-20250514',
-      max_tokens: 2000,
+      max_tokens: 2500,
       system: SYSTEM,
       messages: [{ role: 'user', content: userPrompt }],
     };
-    if (tools) body.tools = tools;
+
+    if (enableWebSearch) {
+      body.tools = [{ type: 'web_search_20250305', name: 'web_search' }];
+    }
 
     const response = await fetch('https://api.anthropic.com/v1/messages', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'x-api-key': apiKey,
-        'anthropic-version': '2023-06-01',
-      },
+      headers: { 'Content-Type': 'application/json', 'x-api-key': apiKey, 'anthropic-version': '2023-06-01' },
       body: JSON.stringify(body),
     });
 
     const data = await response.json();
 
     if (!response.ok) {
-      return res.status(response.status).json({ error: data.error?.message || 'Anthropic API error', detail: JSON.stringify(data) });
+      return res.status(response.status).json({ error: data.error?.message || 'Anthropic API error', detail: JSON.stringify(data).substring(0,500) });
     }
 
-    // Extract text from content blocks (handles web_search tool use too)
-    const text = (data.content || [])
-      .filter(b => b.type === 'text')
-      .map(b => b.text)
-      .join('\n')
-      .trim();
-
+    const text = (data.content || []).filter(b => b.type === 'text').map(b => b.text).join('\n').trim();
     return res.status(200).json({ content: [{ type: 'text', text }], result: text });
 
   } catch (err) {
-    return res.status(500).json({ error: err.message || 'Server error', detail: err.stack?.substring(0, 400) });
+    return res.status(500).json({ error: err.message, detail: err.stack?.substring(0,400) });
   }
 }
