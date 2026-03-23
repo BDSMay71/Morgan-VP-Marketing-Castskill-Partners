@@ -168,7 +168,7 @@ function PresentationsTab() {
       const ctx = getCtx();
       const res = await fetch("/api/generate_pptx",{
         method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({topic:t.trim(),audience:a,brief:(overrides.brief||brief||"")+((ctx&&!overrides.brief)?" | "+ctx:""),tone:overrides.tone||tone,taskType:overrides.taskType||taskType||"full_deck",includeAppendix:form.includeAppendix||false,includeMarketCharts:form.includeMarketCharts||false})
+        body:JSON.stringify({topic:t.trim(),audience:a,brief:(overrides.brief||brief||"")+((ctx&&!overrides.brief)?" | "+ctx:""),tone:overrides.tone||tone,taskType:overrides.taskType||taskType||"full_deck",includeAppendix:includeAppendix||false,includeMarketCharts:includeMarketCharts||false})
       });
       const data = await res.json();
       if(!data.success||!data.base64) throw new Error(data.error||data.detail||"Generation failed");
