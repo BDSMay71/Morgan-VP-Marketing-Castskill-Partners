@@ -238,11 +238,7 @@ function PresentationsTab() {
               <option value="operator">Operator (direct, factory-floor)</option>
               <option value="executive">Executive (measured, boardroom)</option>
             </select>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginTop:14,padding:"10px 14px",background:"#EDF7F2",borderRadius:8}}>
-                <input type="checkbox" id="ws_toggle" checked={form.enableWebSearch} onChange={e=>setF("enableWebSearch",e.target.checked)} style={{width:16,height:16,accentColor:"#1A4C3D",cursor:"pointer"}}/>
-                <label htmlFor="ws_toggle" style={{fontSize:13,color:"#1A4C3D",fontWeight:600,cursor:"pointer"}}>🔍 Enable Web Search</label>
-                <span style={{fontSize:11,color:"#666",marginLeft:4}}>Morgan searches live web data for current market info</span>
-              </div>{error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
+            {error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
             <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
               {loading?"⏳ Building Deck from Catskill Template...":"⬇  Generate & Download PPTX"}
             </button>
@@ -358,6 +354,11 @@ function ContentTab({ tabId }) {
             <label style={{...lbl,marginTop:14}}>Additional Notes</label>
             <textarea value={form.notes} onChange={e=>setF("notes",e.target.value)} rows={2} placeholder="Word count, publication, deadline, specific angles..." style={{...inp,resize:"vertical"}}/>
             {error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
+            <div style={{display:"flex",alignItems:"center",gap:10,marginTop:14,padding:"10px 14px",background:"#EDF7F2",borderRadius:8,cursor:"pointer"}} onClick={()=>setF("enableWebSearch",!form.enableWebSearch)}>
+              <input type="checkbox" id="ws_toggle" checked={form.enableWebSearch} onChange={e=>setF("enableWebSearch",e.target.checked)} style={{width:16,height:16,accentColor:"#1A4C3D",cursor:"pointer"}}/>
+              <label htmlFor="ws_toggle" style={{fontSize:13,color:"#1A4C3D",fontWeight:600,cursor:"pointer",userSelect:"none"}}>🔍 Enable Web Search</label>
+              <span style={{fontSize:11,color:"#666",marginLeft:4}}>Live market data</span>
+            </div>
             <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
               {loading?"Generating...":"Generate Output"}
             </button>
