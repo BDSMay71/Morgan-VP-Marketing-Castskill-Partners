@@ -220,7 +220,7 @@ function PresentationsTab() {
           <div style={{flex:"0 0 460px",background:"#fff",borderRadius:12,padding:28,boxShadow:"0 2px 12px rgba(0,0,0,0.08)"}}>
             <div style={{marginBottom:20}}>
               <div style={{fontSize:11,fontWeight:700,color:"#41AC48",letterSpacing:2,marginBottom:4}}>GENERATE CATSKILL DECK</div>
-              <div style={{fontSize:12,color:"#666"}}>Morgan clones real Catskill slides — mountain photo, brand colors, designed layouts. All slides preserved exactly.</div>
+              <div style={{fontSize:12,color:"#666"}}>Morgan intelligently assembles custom decks from both Catskill source decks, then searches the web for real market charts and reports to support your positioning.</div>
             </div>
             <label style={lbl}>Deck Type</label>
             <select value={taskType} onChange={e=>setTaskType(e.target.value)} style={sel}>
@@ -233,7 +233,7 @@ function PresentationsTab() {
               {AUDIENCES.map(a=><option key={a.v} value={a.v}>{a.l}</option>)}
             </select>
             <label style={{...lbl,marginTop:14}}>Context & Brief</label>
-            <textarea value={brief} onChange={e=>setBrief(e.target.value)} rows={4} placeholder="Key points, specific data, goals, angles..." style={{...inp,resize:"vertical"}}/>
+            <textarea value={brief} onChange={e=>setBrief(e.target.value)} rows={4} placeholder="Describe what you need — e.g. "LP deck focused on data center thesis with operator return data" or "IB teaser with succession wave stats and deal certainty charts"" style={{...inp,resize:"vertical"}}/>
             <label style={{...lbl,marginTop:14}}>Tone</label>
             <select value={tone} onChange={e=>setTone(e.target.value)} style={sel}>
               <option value="institutional">Institutional (rigorous, data-forward)</option>
