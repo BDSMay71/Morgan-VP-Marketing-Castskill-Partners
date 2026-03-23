@@ -238,7 +238,11 @@ function PresentationsTab() {
               <option value="operator">Operator (direct, factory-floor)</option>
               <option value="executive">Executive (measured, boardroom)</option>
             </select>
-            {error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
+            <div style={{display:"flex",alignItems:"center",gap:10,marginTop:14,padding:"10px 14px",background:"#EDF7F2",borderRadius:8}}>
+                <input type="checkbox" id="ws_toggle" checked={form.enableWebSearch} onChange={e=>setF("enableWebSearch",e.target.checked)} style={{width:16,height:16,accentColor:"#1A4C3D",cursor:"pointer"}}/>
+                <label htmlFor="ws_toggle" style={{fontSize:13,color:"#1A4C3D",fontWeight:600,cursor:"pointer"}}>🔍 Enable Web Search</label>
+                <span style={{fontSize:11,color:"#666",marginLeft:4}}>Morgan searches live web data for current market info</span>
+              </div>{error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
             <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
               {loading?"⏳ Building Deck from Catskill Template...":"⬇  Generate & Download PPTX"}
             </button>
@@ -275,7 +279,7 @@ function ContentTab({ tabId }) {
   const [output, setOutput]   = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState("");
-  const [form, setForm]       = useState({taskType:"",topic:"",audience:"",brief:"",tone:"operator",outputFormat:"article",notes:""});
+  const [form, setForm]       = useState({taskType:"",topic:"",audience:"",brief:"",tone:"operator",outputFormat:"article",notes:"",enableWebSearch:false});
   const setF = (k,v) => setForm(f=>({...f,[k]:v}));
 
   const TASK_TYPES = {
@@ -293,7 +297,7 @@ function ContentTab({ tabId }) {
     setError(""); setLoading(true); setOutput(""); setSubTab("agent");
     try {
       const ctx = getCtx();
-      const res = await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({taskType:overrides.taskType||form.taskType,topic:overrides.topic||form.topic,audience:overrides.audience||form.audience,brief:brief+(ctx?" | Context: "+ctx:""),tone:overrides.tone||form.tone,outputFormat:overrides.outputFormat||form.outputFormat,notes:form.notes})});
+      const res = await fetch("/api/chat",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({taskType:overrides.taskType||form.taskType,topic:overrides.topic||form.topic,audience:overrides.audience||form.audience,brief:brief+(ctx?" | Context: "+ctx:""),tone:overrides.tone||form.tone,outputFormat:overrides.outputFormat||form.outputFormat,notes:form.notes,enableWebSearch:overrides.enableWebSearch??form.enableWebSearch})});
       const data = await res.json();
       const text = data.content?.[0]?.text||data.result||data.text||data.output||"";
       setOutput(text);
