@@ -244,18 +244,6 @@ function PresentationsTab() {
               <span style={{fontSize:12,fontWeight:700,color:form.enableWebSearch?"#fff":"#1A4C3D"}}>🔍 Enable Web Search</span>
               <span style={{fontSize:11,color:form.enableWebSearch?"#a8d5b5":"#888"}}>Live market data</span>
             </label>
-            <div style={{display:"flex",flexDirection:"column",gap:8,marginTop:14}}>
-              {[
-                {key:"includeAppendix",icon:"📎",label:"Include Appendix Slides",desc:"Economics, team, legal structure"},
-                {key:"includeMarketCharts",icon:"📊",label:"Add Market Data Slides",desc:"Operator PE returns & deal certainty (live charts)"},
-              ].map(opt=>(
-                <label key={opt.key} onClick={()=>setForm(f=>({...f,[opt.key]:!f[opt.key]}))} style={{display:"flex",alignItems:"center",gap:8,padding:"9px 13px",background:form[opt.key]?"#1A4C3D":"#EDF7F2",borderRadius:7,cursor:"pointer",border:"1.5px solid",borderColor:form[opt.key]?"#1A4C3D":"#d1e8d6",transition:"all 0.15s",userSelect:"none"}}>
-                  <div style={{width:16,height:16,borderRadius:3,border:"2px solid",borderColor:form[opt.key]?"#41AC48":"#1A4C3D",background:form[opt.key]?"#41AC48":"transparent",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:10,color:"#fff",fontWeight:900}}>{form[opt.key]?"✓":""}</div>
-                  <span style={{fontSize:12,fontWeight:700,color:form[opt.key]?"#fff":"#1A4C3D"}}>{opt.icon} {opt.label}</span>
-                  <span style={{fontSize:11,color:form[opt.key]?"#a8d5b5":"#888"}}>{opt.desc}</span>
-                </label>
-              ))}
-            </div>
             <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
               {loading?"⏳ Building Deck from Catskill Template...":"⬇  Generate & Download PPTX"}
             </button>
@@ -292,7 +280,7 @@ function ContentTab({ tabId }) {
   const [output, setOutput]   = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState("");
-  const [form, setForm]       = useState({taskType:"",topic:"",audience:"",brief:"",tone:"operator",outputFormat:"article",notes:"",enableWebSearch:false,includeAppendix:false,includeMarketCharts:false});
+  const [form, setForm]       = useState({taskType:"",topic:"",audience:"",brief:"",tone:"operator",outputFormat:"article",notes:"",enableWebSearch:false});
   const setF = (k,v) => setForm(f=>({...f,[k]:v}));
 
   const TASK_TYPES = {
