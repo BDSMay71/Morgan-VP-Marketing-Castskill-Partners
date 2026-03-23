@@ -239,12 +239,7 @@ function PresentationsTab() {
               <option value="executive">Executive (measured, boardroom)</option>
             </select>
             {error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
-            <label style={{display:"flex",alignItems:"center",gap:8,marginTop:12,padding:"9px 13px",background:form.enableWebSearch?"#1A4C3D":"#EDF7F2",borderRadius:7,cursor:"pointer",border:"1.5px solid",borderColor:form.enableWebSearch?"#1A4C3D":"#d1e8d6",transition:"all 0.15s",userSelect:"none"}} onClick={()=>setF("enableWebSearch",!form.enableWebSearch)}>
-              <div style={{width:16,height:16,borderRadius:3,border:"2px solid",borderColor:form.enableWebSearch?"#41AC48":"#1A4C3D",background:form.enableWebSearch?"#41AC48":"transparent",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,fontSize:10,color:"#fff",fontWeight:900}}>{form.enableWebSearch?"✓":""}</div>
-              <span style={{fontSize:12,fontWeight:700,color:form.enableWebSearch?"#fff":"#1A4C3D"}}>🔍 Enable Web Search</span>
-              <span style={{fontSize:11,color:form.enableWebSearch?"#a8d5b5":"#888"}}>Live market data</span>
-            </label>
-            <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
+                        <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
               {loading?"⏳ Building Deck from Catskill Template...":"⬇  Generate & Download PPTX"}
             </button>
             <div style={{marginTop:12,padding:"10px 14px",background:"#EDF7F2",borderRadius:8,fontSize:12,color:"#1A4C3D"}}>
