@@ -126,6 +126,8 @@ function PresentationsTab() {
   const [error, setError]     = useState("");
   const [result, setResult]   = useState(null);
   const [feedback, setFeedback] = useState("");
+  const [inclAppendix,setInclAppendix]=useState(false);
+  const [inclCharts,setInclCharts]=useState(false);
   const [history, setHistory]  = useState([]);
 
   useEffect(()=>{ const s=getStore(); setHistory(s.history?.filter(h=>h.type?.includes("deck")||h.type?.includes("pptx"))||[]); },[result]);
@@ -168,7 +170,7 @@ function PresentationsTab() {
       const ctx = getCtx();
       const res = await fetch("/api/generate_pptx",{
         method:"POST",headers:{"Content-Type":"application/json"},
-        body:JSON.stringify({topic:t.trim(),audience:a,brief:(overrides.brief||brief||"")+((ctx&&!overrides.brief)?" | "+ctx:""),tone:overrides.tone||tone,taskType:overrides.taskType||taskType||"full_deck",includeAppendix:includeAppendix||false,includeMarketCharts:includeMarketCharts||false})
+        body:JSON.stringify({topic:t.trim(),audience:a,brief:(overrides.brief||brief||"")+((ctx&&!overrides.brief)?" | "+ctx:""),tone:overrides.tone||tone,taskType:overrides.taskType||taskType||"full_deck",includeAppendix:inclAppendix,includeMarketCharts:inclCharts})
       });
       const data = await res.json();
       if(!data.success||!data.base64) throw new Error(data.error||data.detail||"Generation failed");
@@ -239,7 +241,19 @@ function PresentationsTab() {
               <option value="executive">Executive (measured, boardroom)</option>
             </select>
             {error&&<div style={{marginTop:12,padding:"10px 14px",background:"#fef2f2",border:"1px solid #fca5a5",borderRadius:8,fontSize:13,color:"#dc2626"}}>{error}</div>}
-                        <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
+                        <div style={{display:"flex",flexDirection:"column",gap:7,marginTop:12}}>
+              <label onClick={()=>setInclAppendix(p=>!p)} style={{display:"flex",alignItems:"center",gap:8,padding:"9px 13px",background:inclAppendix?"#1A4C3D":"#EDF7F2",borderRadius:7,cursor:"pointer",border:"1.5px solid",borderColor:inclAppendix?"#1A4C3D":"#d1e8d6",userSelect:"none"}}>
+                <div style={{width:15,height:15,borderRadius:3,border:"2px solid",borderColor:inclAppendix?"#41AC48":"#1A4C3D",background:inclAppendix?"#41AC48":"transparent",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:"#fff",fontSize:10,fontWeight:900}}>{inclAppendix?"✓":""}</div>
+                <span style={{fontSize:12,fontWeight:700,color:inclAppendix?"#fff":"#1A4C3D"}}>📎 Include Appendix Slides</span>
+                <span style={{fontSize:11,color:inclAppendix?"#a8d5b5":"#888"}}>Economics, team, legal structure</span>
+              </label>
+              <label onClick={()=>setInclCharts(p=>!p)} style={{display:"flex",alignItems:"center",gap:8,padding:"9px 13px",background:inclCharts?"#1A4C3D":"#EDF7F2",borderRadius:7,cursor:"pointer",border:"1.5px solid",borderColor:inclCharts?"#1A4C3D":"#d1e8d6",userSelect:"none"}}>
+                <div style={{width:15,height:15,borderRadius:3,border:"2px solid",borderColor:inclCharts?"#41AC48":"#1A4C3D",background:inclCharts?"#41AC48":"transparent",display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0,color:"#fff",fontSize:10,fontWeight:900}}>{inclCharts?"✓":""}</div>
+                <span style={{fontSize:12,fontWeight:700,color:inclCharts?"#fff":"#1A4C3D"}}>📊 Add Market Data Slides</span>
+                <span style={{fontSize:11,color:inclCharts?"#a8d5b5":"#888"}}>Operator PE returns + deal certainty (live)</span>
+              </label>
+            </div>
+            <button onClick={()=>generate()} disabled={loading} style={{marginTop:20,width:"100%",padding:"14px 0",background:loading?"#9ca3af":"#1A4C3D",color:"#fff",border:"none",borderRadius:8,fontSize:14,fontWeight:700,cursor:loading?"default":"pointer"}}>
               {loading?"⏳ Building Deck from Catskill Template...":"⬇  Generate & Download PPTX"}
             </button>
             <div style={{marginTop:12,padding:"10px 14px",background:"#EDF7F2",borderRadius:8,fontSize:12,color:"#1A4C3D"}}>
