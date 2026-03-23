@@ -62,7 +62,7 @@ function PresentationsTab() {
     setError(""); setLoading(true); setResult(null);
     try {
       const ctx = getContext();
-      const res = await fetch("/api/pptx", {
+      const res = await fetch("/api/generate_pptx", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
