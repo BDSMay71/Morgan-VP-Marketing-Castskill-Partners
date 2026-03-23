@@ -1,150 +1,120 @@
 """
-Catskill Partners — Template-Based PPTX Generator v3
-Clones real slides from both official Catskill decks stored in this directory.
-Deck files: api/main_deck.pptx + api/appendix_deck.pptx
+Catskill Partners — ZIP-Native PPTX Generator v4
+Builds decks by subsetting the real Catskill PPTX at the ZIP level.
+NO python-pptx slide cloning = NO duplicate entries = NO PowerPoint errors.
 """
 from http.server import BaseHTTPRequestHandler
-import json, io, os, copy, re, base64, urllib.request
-from pptx import Presentation
-from pptx.oxml.ns import qn
+import json, io, os, re, base64, zipfile, urllib.request
 from lxml import etree
 
 _DIR = os.path.dirname(os.path.abspath(__file__))
 
-def _load_decks():
-    main_path = os.path.join(_DIR, "main_deck.pptx")
-    app_path  = os.path.join(_DIR, "appendix_deck.pptx")
-    if not os.path.exists(main_path): raise FileNotFoundError(f"main_deck.pptx not found at {main_path}")
-    if not os.path.exists(app_path):  raise FileNotFoundError(f"appendix_deck.pptx not found at {app_path}")
-    return Presentation(main_path), Presentation(app_path)
-
-MAIN = {"cover":0,"disclaimer":1,"toc":2,"firm_overview":3,"deal_process":4,"strategy":5,"sector_focus":6,"market_data":7,"pipeline":8,"deal_flow":9,"underwriting":10,"playbook":11,"value_creation":12,"why_now":13,"closing":14,"legal_structure":15,"is_economics":16,"fund_economics":17,"team":18,"deal_summary":19}
-APP  = {"appendix_cover":0,"a_legal":1,"a_is_econ":2,"a_fund_econ":3,"a_team":4,"a_pipeline":5,"a_deal_summary":6,"a_sector_adv":7,"a_sector_eng":8,"a_sector_prec":9,"a_cases_cover":10,"a_case_a":11,"a_case_b":12,"a_case_c":13,"a_case_d":14,"a_case_e":15,"a_case_f":16,"a_bios":17}
+SLIDES = {
+    "cover":0,"disclaimer":1,"toc":2,"firm_overview":3,"deal_process":4,
+    "strategy":5,"sector_focus":6,"market_data":7,"pipeline":8,"deal_flow":9,
+    "underwriting":10,"playbook":11,"value_creation":12,"why_now":13,
+    "closing":14,"legal_structure":15,"is_economics":16,"fund_economics":17,
+    "team":18,"deal_summary":19,
+}
 
 AUDIENCE_SLIDES = {
-    "lp":      [("main","cover"),("main","toc"),("main","firm_overview"),("main","market_data"),("main","strategy"),("main","sector_focus"),("main","pipeline"),("main","value_creation"),("main","why_now"),("app","a_fund_econ"),("app","a_is_econ"),("app","a_team"),("app","a_bios"),("main","closing"),("main","disclaimer")],
-    "ib":      [("main","cover"),("main","toc"),("main","firm_overview"),("main","deal_process"),("main","pipeline"),("main","deal_flow"),("main","sector_focus"),("app","a_sector_adv"),("app","a_sector_prec"),("main","value_creation"),("main","why_now"),("app","a_deal_summary"),("app","a_case_a"),("app","a_case_b"),("main","closing"),("main","disclaimer")],
-    "founder": [("main","cover"),("main","firm_overview"),("main","strategy"),("main","value_creation"),("main","why_now"),("app","a_case_a"),("app","a_case_b"),("main","closing")],
-    "general": [("main","cover"),("main","toc"),("main","firm_overview"),("main","market_data"),("main","strategy"),("main","pipeline"),("main","value_creation"),("main","why_now"),("main","fund_economics"),("app","a_bios"),("main","closing"),("main","disclaimer")],
+    "lp":[0,2,3,4,5,6,7,8,12,13,17,18,14,1],
+    "ib":[0,2,3,4,8,9,6,12,13,19,14,1],
+    "founder":[0,3,5,12,13,11,14],
+    "general":[0,2,3,7,5,8,12,13,17,14,1],
 }
 
 def get_audience_key(a):
-    a = a.lower()
+    a=a.lower()
     if any(x in a for x in ["lp","institutional","family office","hnw"]): return "lp"
     if any(x in a for x in ["banker","intermediary","ib","broker"]): return "ib"
     if any(x in a for x in ["founder","owner","seller","operator"]): return "founder"
     return "general"
 
-def set_para_text(para, new_text):
-    runs = para._p.findall(qn("a:r"))
-    if not runs: return
-    first_rPr = None
-    rPr = runs[0].find(qn("a:rPr"))
-    if rPr is not None: first_rPr = copy.deepcopy(rPr)
-    for r in runs: para._p.remove(r)
-    r_new = etree.SubElement(para._p, qn("a:r"))
-    if first_rPr is not None: r_new.append(first_rPr)
-    t_new = etree.SubElement(r_new, qn("a:t"))
-    t_new.text = new_text
+def build_deck_zip(src_path, slide_indices):
+    NS_P='http://schemas.openxmlformats.org/presentationml/2006/main'
+    NS_R='http://schemas.openxmlformats.org/officeDocument/2006/relationships'
+    with zipfile.ZipFile(src_path,'r') as zin:
+        prs_rels_xml=zin.read('ppt/_rels/presentation.xml.rels')
+        prs_rels_tree=etree.fromstring(prs_rels_xml)
+        all_slides=[]
+        for rel in prs_rels_tree:
+            rt=rel.get('Type',''); tgt=rel.get('Target','')
+            if rt.endswith('/slide') and re.match(r'slides/slide\d+\.xml$',tgt):
+                m=re.search(r'slide(\d+)\.xml$',tgt)
+                if m: all_slides.append((int(m.group(1)),rel.get('Id'),tgt))
+        all_slides.sort(key=lambda x:x[0])
+        if not all_slides: raise ValueError("No slides found")
+        slide_map={i:{'num':num,'rId':rid,'target':tgt} for i,(num,rid,tgt) in enumerate(all_slides)}
+        max_idx=len(slide_map)-1
+        valid=list(dict.fromkeys(i for i in slide_indices if 0<=i<=max_idx))
+        kept_rids={slide_map[i]['rId'] for i in valid}
+        kept_nums={slide_map[i]['num'] for i in valid}
+        all_nums={info['num'] for info in slide_map.values()}
+        unwanted=all_nums-kept_nums
+        prs_xml=zin.read('ppt/presentation.xml')
+        prs_tree=etree.fromstring(prs_xml)
+        sldIdLst=prs_tree.find(f'{{{NS_P}}}sldIdLst')
+        if sldIdLst is not None:
+            for sldId in list(sldIdLst):
+                if sldId.get(f'{{{NS_R}}}id') not in kept_rids:
+                    sldIdLst.remove(sldId)
+        for rel in list(prs_rels_tree):
+            rt=rel.get('Type',''); tgt=rel.get('Target','')
+            if rt.endswith('/slide') and re.match(r'slides/slide\d+\.xml$',tgt):
+                if rel.get('Id') not in kept_rids: prs_rels_tree.remove(rel)
+        def skip(fn):
+            for n in unwanted:
+                if fn in(f'ppt/slides/slide{n}.xml',f'ppt/slides/_rels/slide{n}.xml.rels',
+                         f'ppt/notesSlides/notesSlide{n}.xml',f'ppt/notesSlides/_rels/notesSlide{n}.xml.rels'):
+                    return True
+            return False
+        buf=io.BytesIO()
+        with zipfile.ZipFile(buf,'w',compression=zipfile.ZIP_DEFLATED,compresslevel=6) as zout:
+            seen=set()
+            for item in zin.infolist():
+                fn=item.filename
+                if fn in seen: continue
+                seen.add(fn)
+                if skip(fn): continue
+                if fn=='ppt/presentation.xml':
+                    data=etree.tostring(prs_tree,xml_declaration=True,encoding='UTF-8',standalone=True)
+                elif fn=='ppt/_rels/presentation.xml.rels':
+                    data=etree.tostring(prs_rels_tree,xml_declaration=True,encoding='UTF-8',standalone=True)
+                else:
+                    data=zin.read(fn)
+                zout.writestr(item,data)
+        buf.seek(0); return buf.read()
 
-def replace_text(slide, replacements):
-    for shape in slide.shapes:
-        if not shape.has_text_frame: continue
-        for para in shape.text_frame.paragraphs:
-            full = "".join(r.text for r in para.runs)
-            for old, new in replacements.items():
-                if old and old in full:
-                    set_para_text(para, full.replace(old, new, 1)); break
-
-def clone_slide(src_prs, src_idx, tgt_prs):
-    src = src_prs.slides[src_idx]
-    blank = tgt_prs.slide_layouts[6]
-    dst = tgt_prs.slides.add_slide(blank)
-    dst_sp = dst.shapes._spTree
-    for child in list(dst_sp): dst_sp.remove(child)
-    for elem in src.shapes._spTree: dst_sp.append(copy.deepcopy(elem))
-    src_csld = src._element.find(qn("p:cSld"))
-    dst_csld = dst._element.find(qn("p:cSld"))
-    src_bg = src_csld.find(qn("p:bg"))
-    if src_bg is not None:
-        dst_bg = dst_csld.find(qn("p:bg"))
-        if dst_bg is not None: dst_csld.remove(dst_bg)
-        dst_csld.insert(0, copy.deepcopy(src_bg))
-    rId_map = {}
-    for rId, rel in src.part.rels.items():
-        try:
-            new_rId = dst.part.relate_to(rel.target if rel.is_external else rel.target_part, rel.reltype, is_external=rel.is_external)
-            if new_rId != rId: rId_map[rId] = new_rId
-        except: pass
-    if rId_map:
-        xml_str = etree.tostring(dst._element, encoding="unicode")
-        for old, new in rId_map.items():
-            xml_str = xml_str.replace(f'r:embed="{old}"', f'r:embed="{new}"')
-            xml_str = xml_str.replace(f'r:id="{old}"', f'r:id="{new}"')
-        new_elem = etree.fromstring(xml_str)
-        parent = dst._element.getparent()
-        if parent is not None:
-            idx_p = list(parent).index(dst._element); parent.remove(dst._element); parent.insert(idx_p, new_elem)
-    return dst
-
-SYSTEM = """You are Morgan Cole, VP of Marketing at Catskill Partners LP.
-Generate concise text updates for an investor deck. Return JSON only (no markdown):
-{"cover_audience_line":"LP / Institutional Investor Overview — Q1 2026","toc_items":["Firm Overview","Market Opportunity","Investment Strategy","Deal Sourcing","Value Creation","Fund Economics","Team","Appendix"],"custom_text":{}}
-
-FIRM FACTS: Brian Steel CEO/operator >10x MOIC Tenere exit | Mike Fuller 20+ yrs ICT/DC PE | Fund I $250M target | 6-8 platforms $2-20M EBITDA $25-150M EV | 1700+ owner DB | 14 active deals | 25-30% IRR 3-4x MOIC | CLARITY. CRAFT. CAPITAL."""
-
-def call_claude(topic, audience, brief, tone, api_key):
-    prompt = f"Deck: {topic} | Audience: {audience} | Brief: {brief or 'Standard overview'} | Tone: {tone}"
-    body = json.dumps({"model":"claude-sonnet-4-20250514","max_tokens":800,"system":SYSTEM,"messages":[{"role":"user","content":prompt}]}).encode()
-    req = urllib.request.Request("https://api.anthropic.com/v1/messages",data=body,headers={"Content-Type":"application/json","x-api-key":api_key,"anthropic-version":"2023-06-01"})
-    try:
-        with urllib.request.urlopen(req,timeout=30) as r: d = json.loads(r.read())
-        raw = d.get("content",[{}])[0].get("text","{}").strip()
-        raw = re.sub(r"```json\n?","",raw).replace("```","").strip()
-        return json.loads(raw)
-    except: return {"cover_audience_line":audience,"toc_items":[],"custom_text":{}}
-
-def build_deck(topic, audience, brief, tone, task_type, api_key):
-    main_prs, app_prs = _load_decks()
-    out = Presentation()
-    out.slide_width = main_prs.slide_width
-    out.slide_height = main_prs.slide_height
-    updates = call_claude(topic, audience, brief, tone, api_key)
-    audience_key = get_audience_key(audience)
-    if task_type in ("lp_update","fund_economics"): audience_key = "lp"
-    elif task_type == "ib_teaser": audience_key = "ib"
-    slides_to_use = AUDIENCE_SLIDES.get(audience_key, AUDIENCE_SLIDES["general"])
-    if task_type == "one_pager":
-        slides_to_use = [("main","cover"),("main","firm_overview"),("main","market_data"),("main","why_now"),("main","closing")]
-    for src_type, slide_name in slides_to_use:
-        src_prs = main_prs if src_type == "main" else app_prs
-        idx_map = MAIN if src_type == "main" else APP
-        idx = idx_map.get(slide_name)
-        if idx is None or idx >= len(src_prs.slides): continue
-        slide = clone_slide(src_prs, idx, out)
-        replacements = {}
-        if slide_name == "cover" and updates.get("cover_audience_line"):
-            replacements["Investor Overview"] = updates["cover_audience_line"]
-        if slide_name == "toc" and updates.get("toc_items"):
-            replacements["Catskill Partners Overview"] = "\n".join(updates["toc_items"][:9])
-        if replacements: replace_text(slide, replacements)
-    buf = io.BytesIO()
-    out.save(buf)
-    return buf.getvalue()
+def build_deck(topic,audience,brief,tone,task_type,api_key):
+    main_path=os.path.join(_DIR,"main_deck.pptx")
+    if not os.path.exists(main_path): raise FileNotFoundError(f"main_deck.pptx not found at {main_path}")
+    key=get_audience_key(audience)
+    if task_type in("lp_update","fund_economics"): key="lp"
+    elif task_type=="ib_teaser": key="ib"
+    elif task_type=="one_pager": return build_deck_zip(main_path,[0,3,7,13,14])
+    return build_deck_zip(main_path,AUDIENCE_SLIDES.get(key,AUDIENCE_SLIDES["general"]))
 
 class handler(BaseHTTPRequestHandler):
-    def log_message(self, *a): pass
+    def log_message(self,*a): pass
     def do_OPTIONS(self): self.send_response(200); self._cors(); self.end_headers()
     def do_POST(self):
         try:
-            length = int(self.headers.get("Content-Length",0))
-            body = json.loads(self.rfile.read(length)) if length else {}
-            api_key = os.environ.get("ANTHROPIC_API_KEY","")
+            length=int(self.headers.get("Content-Length",0))
+            body=json.loads(self.rfile.read(length)) if length else {}
+            api_key=os.environ.get("ANTHROPIC_API_KEY","")
             if not api_key: return self._err(500,"API key not configured")
-            pptx_bytes = build_deck(body.get("topic","Catskill Partners Overview"),body.get("audience","LP / Institutional Investor"),body.get("brief",""),body.get("tone","Institutional"),body.get("taskType","full_deck"),api_key)
-            slug = re.sub(r"[^a-zA-Z0-9]","-",body.get("topic","deck"))[:40]
-            filename = f"Catskill-{slug}.pptx"
-            resp = json.dumps({"success":True,"filename":filename,"base64":base64.b64encode(pptx_bytes).decode(),"slideCount":len(Presentation(io.BytesIO(pptx_bytes)).slides),"title":body.get("topic","")}).encode()
+            topic=body.get("topic","Catskill Partners Overview")
+            audience=body.get("audience","LP / Institutional Investor")
+            brief=body.get("brief","")
+            tone=body.get("tone","Institutional")
+            task_type=body.get("taskType","full_deck")
+            pptx_bytes=build_deck(topic,audience,brief,tone,task_type,api_key)
+            with zipfile.ZipFile(io.BytesIO(pptx_bytes)) as z:
+                prs_rels=etree.fromstring(z.read('ppt/_rels/presentation.xml.rels'))
+                slide_count=sum(1 for r in prs_rels if r.get('Type','').endswith('/slide') and re.match(r'slides/slide\d+\.xml$',r.get('Target','')))
+            slug=re.sub(r"[^a-zA-Z0-9]","-",topic)[:40]
+            resp=json.dumps({"success":True,"filename":f"Catskill-{slug}.pptx","base64":base64.b64encode(pptx_bytes).decode(),"slideCount":slide_count,"title":topic}).encode()
             self.send_response(200); self._cors()
             self.send_header("Content-Type","application/json"); self.send_header("Content-Length",str(len(resp)))
             self.end_headers(); self.wfile.write(resp)
