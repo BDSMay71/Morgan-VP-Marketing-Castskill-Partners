@@ -58,8 +58,8 @@ const FOLLOW_UPS = {
 };
 
 // ── Quick Actions Tab ────────────────────────────────────────────────────────
-function QuickActions({ tabId, onRun }) {
-  const actions = QUICK[tabId] || [];
+function QuickActions({ tabId, onRun, actions: customActions }) {
+  const actions = customActions || QUICK[tabId] || [];
   return (
     <div style={{padding:"4px 0"}}>
       <div style={{fontSize:12,color:"#666",marginBottom:16,letterSpacing:1,fontWeight:700}}>ONE-CLICK ACTIONS — CLICK TO PRE-FILL & GENERATE</div>
