@@ -269,30 +269,6 @@ function PresentationsTab() {
   );
 }
 
-// ── QuickActions wrapper with custom actions prop ─────────────────────────────
-function QuickActions({ tabId, onRun, actions: customActions }) {
-  const items = customActions || QUICK[tabId] || [];
-  return (
-    <div style={{padding:"4px 0"}}>
-      <div style={{fontSize:12,color:"#666",marginBottom:16,letterSpacing:1,fontWeight:700}}>ONE-CLICK ACTIONS — CLICK ANY CARD TO GENERATE INSTANTLY</div>
-      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(260px,1fr))",gap:12}}>
-        {items.map((a,i)=>(
-          <div key={i} style={card} onClick={()=>onRun(a)}
-            onMouseEnter={e=>{e.currentTarget.style.borderColor="#1A4C3D";e.currentTarget.style.background="#FAFFFE";}}
-            onMouseLeave={e=>{e.currentTarget.style.borderColor="transparent";e.currentTarget.style.background="#fff";}}>
-            <div style={{display:"flex",alignItems:"center",gap:10,marginBottom:6}}>
-              <span style={{fontSize:22}}>{a.icon}</span>
-              <span style={{fontWeight:700,fontSize:14,color:"#1A4C3D"}}>{a.title}</span>
-            </div>
-            <div style={{fontSize:12,color:"#666",lineHeight:1.5}}>{a.desc}</div>
-            <div style={{marginTop:8,fontSize:11,color:"#41AC48",fontWeight:600}}>→ Click to generate instantly</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-}
-
 // ── Content Tab ──────────────────────────────────────────────────────────────
 function ContentTab({ tabId }) {
   const [subTab, setSubTab] = useState("quick");
