@@ -6,8 +6,9 @@
     "api/*.js": {
       "maxDuration": 60
     },
-    "api/*.py": {
-      "maxDuration": 60
+    "api/generate_pptx.py": {
+      "maxDuration": 60,
+      "runtime": "python3.9"
     }
   },
   "rewrites": [
