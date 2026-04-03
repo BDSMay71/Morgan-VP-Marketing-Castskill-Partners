@@ -127,7 +127,7 @@ async function sendEmail(db,newTxns,resendKey){
   const n=newTxns.length;
   const subject='LMM Industrial M&A Intelligence — '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+(n?' · '+n+' New Deal'+(n>1?'s':''):'');
   if(!resendKey)return{status:'no_resend_key',html_length:html.length,note:'Add RESEND_API_KEY to Vercel env vars to enable auto-send'};
-  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{'Authorization':'Bearer '+resendKey,'Content-Type':'application/json'},body:JSON.stringify({from:'Morgan Cole <onboarding@resend.dev>',to:EMAILS,subject,html})});
+  const r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{'Authorization':'Bearer '+resendKey,'Content-Type':'application/json'},body:JSON.stringify({from:'Morgan Cole <onboarding@resend.dev>',reply_to:'brian.steel@catskillpartners.com',to:EMAILS,subject,html})});
   const res=await r.json();
   return{status:r.ok?'sent':'error',to:EMAILS,id:res.id,error:res.message||null};
 }
