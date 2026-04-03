@@ -139,7 +139,7 @@ module.exports=async function handler(req,res){
   if(req.method==='OPTIONS')return res.status(200).end();
   const apiKey=process.env.ANTHROPIC_API_KEY;
   const ghToken=process.env.GITHUB_TOKEN||'';
-  const resendKey=process.env.RESEND_API_KEY||'';
+  const resendKey=process.env.RESEND_API_KEY||body.resend_key||'';
   if(!apiKey)return res.status(500).json({error:'ANTHROPIC_API_KEY not set'});
   try{
     const body=req.body||{};
