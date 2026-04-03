@@ -139,10 +139,11 @@ module.exports=async function handler(req,res){
   if(req.method==='OPTIONS')return res.status(200).end();
   const apiKey=process.env.ANTHROPIC_API_KEY;
   const ghToken=process.env.GITHUB_TOKEN||'';
-  const resendKey=process.env.RESEND_API_KEY||body.resend_key||'';
+  const resendKey=process.env.RESEND_API_KEY||'';
   if(!apiKey)return res.status(500).json({error:'ANTHROPIC_API_KEY not set'});
   try{
     const body=req.body||{};
+    const resendKeyFinal=process.env.RESEND_API_KEY||body.resend_key||'';
     const action=body.action||(req.method==='GET'?'get':'weekly_scan');
 
     if(action==='get'){
@@ -173,7 +174,7 @@ module.exports=async function handler(req,res){
       let newSha=null;
       if(ghToken)newSha=await saveDB(db,sha,(isInit?'Initial':'Weekly')+' scan: +'+allNew.length+' LMM industrial deals',ghToken);
       db.metadata.last_email=new Date().toISOString();
-      const emailResult=await sendEmail(db,allNew,resendKey);
+      const emailResult=await sendEmail(db,allNew,resendKeyFinal);
       if(ghToken&&newSha)await saveDB(db,newSha,'Update: email sent '+new Date().toISOString().split('T')[0],ghToken);
       return res.status(200).json({success:true,added:allNew.length,total:db.transactions.length,periods_scanned:periods.length,emailResult});
     }
@@ -182,8 +183,8 @@ module.exports=async function handler(req,res){
       const{db}=await loadDB(ghToken);
       const cutoff=new Date();cutoff.setDate(cutoff.getDate()-7);
       const recent=(db.transactions||[]).filter(t=>{try{return new Date(t.date_added||t.date_announced||0)>cutoff;}catch{return false;}});
-      const result=await sendEmail(db,recent,resendKey);
-      return res.status(200).json({success:true,...result,html_preview_length:buildHTML(db,recent).length});
+      const result=await sendEmail(db,recent,resendKeyFinal);
+      const result=await sendEmail(db,recent,resendKeyFinal);return res.status(200).json({success:true,...result,html_preview_length:buildHTML(db,recent).length});
     }
 
     if(action==='get_html'){
