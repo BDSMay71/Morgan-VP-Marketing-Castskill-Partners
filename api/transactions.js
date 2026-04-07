@@ -291,8 +291,10 @@ module.exports=async function handler(req,res){
         console.log('[tx] DB saved, sha: '+newSha);
       }
 
-      var emailResult=await sendEmail(db,allNew,resendKey);
-      console.log('[tx] Email: '+JSON.stringify(emailResult));
+      // Skip email during batch scans (batch>=0); only send on final batch or weekly scan
+      var skipEmail=(isInit&&batchNum>=0&&batchNum<2);
+      var emailResult=skipEmail?{status:'skipped_batch',batch:batchNum}:await sendEmail(db,allNew,resendKey);
+      if(!skipEmail)console.log('[tx] Email: '+JSON.stringify(emailResult));
 
       return res.status(200).json({
         success:true,added:allNew.length,total:db.metadata.total,
