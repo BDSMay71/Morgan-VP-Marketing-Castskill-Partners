@@ -72,7 +72,7 @@ async function sendEmail(db,newTxns,resendKey){
   var subj='LMM Industrial M&A Intelligence — '+new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'})+' | '+total+' Deals'+(n>0?' | '+n+' New This Week':'');
   if(!resendKey)return{status:'no_resend_key',html_length:h.length};
   try{
-    var r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{'Authorization':'Bearer '+resendKey,'Content-Type':'application/json'},body:JSON.stringify({from:'Morgan Cole <onboarding@resend.dev>',to:TO,subject:subj,html:h,reply_to:'brian.steel@catskillpartners.com'})});
+    var r=await fetch('https://api.resend.com/emails',{method:'POST',headers:{'Authorization':'Bearer '+resendKey,'Content-Type':'application/json'},body:JSON.stringify({from:'Morgan Cole <morgan@catskillpartners.com>',to:TO,subject:subj,html:h,reply_to:'brian.steel@catskillpartners.com'})});
     var res=await r.json();return{status:r.ok?'sent':'error',to:TO,id:res.id,error:res.message||null};
   }catch(e){return{status:'error',error:e.message};}
 }
