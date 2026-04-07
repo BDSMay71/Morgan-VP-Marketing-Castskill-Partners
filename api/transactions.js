@@ -249,13 +249,17 @@ module.exports=async function handler(req,res){
       var isInit=action==='initial_scan';
       // For initial: scan 4 distinct time windows to maximise unique deal coverage
       // For weekly: just last 10 days
+      // ALL 6 historical periods split into 3 batches of 2 to avoid Vercel 60s timeout
+      var ALL_PERIODS=['Q4 2024 (October through December 2024)',
+        'Q1 2025 (January through March 2025)',
+        'Q2-Q3 2025 (April through September 2025)',
+        'Q4 2025 (October through December 2025)',
+        'Q1 2026 (January through March 2026)',
+        'recent weeks in 2026 (March and April 2026)'];
+      // batch: 0=first 2, 1=middle 2, 2=last 2, undefined=all (for cron weekly)
+      var batchNum=typeof body.batch==='number'?body.batch:-1;
       var periods=isInit
-        ?['Q4 2024 (October through December 2024)',
-          'Q1 2025 (January through March 2025)',
-          'Q2-Q3 2025 (April through September 2025)',
-          'Q4 2025 (October through December 2025)',
-          'Q1 2026 (January through March 2026)',
-          'recent weeks in 2026 (March and April 2026)']
+        ?(batchNum>=0?ALL_PERIODS.slice(batchNum*2,(batchNum*2)+2):ALL_PERIODS.slice(0,2))
         :['the past 10 days ending '+new Date().toISOString().split('T')[0]];
 
       var LD=await loadDB(ghToken);
