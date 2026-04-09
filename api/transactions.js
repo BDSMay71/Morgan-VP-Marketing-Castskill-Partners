@@ -259,7 +259,7 @@ module.exports=async function handler(req,res){
       // batch: 0=first 2, 1=middle 2, 2=last 2, undefined=all (for cron weekly)
       var batchNum=typeof body.batch==='number'?body.batch:-1;
       var periods=isInit
-        ?(batchNum>=0?ALL_PERIODS.slice(batchNum*2,(batchNum*2)+2):ALL_PERIODS.slice(0,2))
+        ?(batchNum>=0?ALL_PERIODS.slice(batchNum,batchNum+1):ALL_PERIODS.slice(0,1))
         :['the past 10 days ending '+new Date().toISOString().split('T')[0]];
 
       var LD=await loadDB(ghToken);
@@ -292,7 +292,7 @@ module.exports=async function handler(req,res){
       }
 
       // Skip email during batch scans (batch>=0); only send on final batch or weekly scan
-      var skipEmail=(isInit&&batchNum>=0&&batchNum<2);
+      var skipEmail=(isInit&&batchNum>=0&&batchNum<5);
       var emailResult=skipEmail?{status:'skipped_batch',batch:batchNum}:await sendEmail(db,allNew,resendKey);
       if(!skipEmail)console.log('[tx] Email: '+JSON.stringify(emailResult));
 
