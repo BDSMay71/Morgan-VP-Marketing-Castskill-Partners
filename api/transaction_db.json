@@ -1,15 +1,11 @@
 {
   "metadata": {
-    "created": "2026-04-03T11:26:04.148Z",
-    "last_scan": "2026-04-09T12:49:05.973Z",
+    "created": "2026-04-09T13:09:14.249Z",
+    "last_scan": null,
     "last_email": null,
     "total": 0,
     "covered_from": "2024-10-01",
-    "version": "1.0",
-    "description": "LMM Industrial M&A Transaction Intelligence Database â Catskill Partners",
-    "deploy_trigger": "2026-04-03T14:25:46.945Z",
-    "env_ready": "2026-04-03T14:46:14.714Z",
-    "resend_fixed": "2026-04-03T14:53:30.383Z"
+    "version": "5.0"
   },
   "transactions": [],
   "pe_platforms": {}
